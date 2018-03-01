@@ -1,8 +1,20 @@
-public class PanelReglaFalsa extends javax.swing.JPanel {
+import Algoritmos.ReglaFalsa;
 
-    /**
-     * Creates new form NewJPanel
-     */
+import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
+public class PanelReglaFalsa extends javax.swing.JPanel 
+{
+    DecimalFormat decimales = new DecimalFormat(".000000");
+    int iteracion = 1;
+    double errorPermitido = 0.01, error=1;
+    //double limiteA, limiteB; 
+    double Xr, XrAnt;
+    double fA, fB, fXr;
+    String funcion, vacio = " ";
+    
     public PanelReglaFalsa() {
         initComponents();
     }
@@ -21,7 +33,7 @@ public class PanelReglaFalsa extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         txtLimiteA = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Tabla = new javax.swing.JTable();
+        tblResultados = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtLimiteB = new javax.swing.JTextField();
@@ -43,7 +55,7 @@ public class PanelReglaFalsa extends javax.swing.JPanel {
             }
         });
 
-        Tabla.setModel(new javax.swing.table.DefaultTableModel(
+        tblResultados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -66,7 +78,7 @@ public class PanelReglaFalsa extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(Tabla);
+        jScrollPane1.setViewportView(tblResultados);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -135,7 +147,92 @@ public class PanelReglaFalsa extends javax.swing.JPanel {
     }//GEN-LAST:event_txtFuncionActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-        // TODO add your handling code here:
+        ReglaFalsa rf = new ReglaFalsa();
+        
+        funcion = txtFuncion.getText();
+        double limiteA = Double.parseDouble(txtLimiteA.getText());
+        double limiteB = Double.parseDouble(txtLimiteB.getText());
+                
+        DefaultTableModel tabla = (DefaultTableModel) tblResultados.getModel();
+        Object[] fila = new Object[8];
+        
+        do
+        {
+            fila[0] = iteracion; // Iteracion
+            fila[1] = limiteA; // Limite de a
+            fila[2] = limiteB; // Limite de b
+            
+            try {
+                fA = rf.fa(funcion, limiteA);
+            } catch (Exception ex) {
+                Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            try {
+                fB = rf.fb(funcion, limiteB);
+            } catch (Exception ex) {
+                Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            try {
+                fila[3] = fA; // f(a)
+            } catch (Exception ex) {
+                Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            try {
+                fila[4] = fB; // f(b)
+            } catch (Exception ex) {
+                Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+               
+            try {
+                Xr = rf.Xr(limiteA, limiteB, fA, fB);
+            } catch (Exception ex) {
+                Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            try {
+                fila[5] = Xr; // Xr
+            } catch (Exception ex) {
+                Logger.getLogger(PanelReglaFalsa.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+            
+            try {
+                fXr = rf.fxr(funcion, Xr);
+            } catch (Exception ex) {
+                Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            try {
+                fila[6] = fXr; // f(Xr)
+            } catch (Exception ex) {
+                Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            if(fA*fXr > 0)
+                limiteA = Xr;
+            else
+            {
+                if(fA*Xr < 0)
+                    limiteB = Xr;
+            }
+            
+            if(iteracion != 1)
+            {
+                error = Math.abs(((Xr-XrAnt)/Xr)*100);
+                fila[7] = error; // Error
+            }
+            else
+                fila[7] = Double.parseDouble(decimales.format(error)); // Error
+            
+            tabla.addRow(fila);
+            
+            XrAnt = Xr;
+            iteracion++;
+        } while(error > errorPermitido || (fA*fXr)==0);
+
+        tblResultados.setModel(tabla);
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void txtLimiteAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLimiteAActionPerformed
@@ -144,13 +241,13 @@ public class PanelReglaFalsa extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Tabla;
     private javax.swing.JButton btnCalcular;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblResultados;
     private javax.swing.JTextField txtFuncion;
     private javax.swing.JTextField txtLimiteA;
     private javax.swing.JTextField txtLimiteB;
