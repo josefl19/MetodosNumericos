@@ -158,7 +158,12 @@ public class Metodos extends javax.swing.JFrame
     }//GEN-LAST:event_jMenuReglaFalsaActionPerformed
 
     private void jMenuPuntoFijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPuntoFijoActionPerformed
-        // TODO add your handling code here:
+        PanelPuntoFijo pf = new PanelPuntoFijo();
+        pf.setSize(685,293);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(pf);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
     }//GEN-LAST:event_jMenuPuntoFijoActionPerformed
 
     private void jMenuNewtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuNewtonActionPerformed

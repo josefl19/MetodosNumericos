@@ -8,12 +8,12 @@
  *
  * @author josef
  */
-public class PanelPuntoMedio extends javax.swing.JPanel {
+public class PanelPuntoFijo extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelPuntoMedio
      */
-    public PanelPuntoMedio() {
+    public PanelPuntoFijo() {
         initComponents();
     }
 
