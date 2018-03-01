@@ -1,50 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Algoritmos;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author marianaortc
- */
 public class ReglaFalsa {
-      double fa (String funcion, double a) throws Exception
+    public double fa (String funcion, double a) throws Exception
     {
-        double fa1;
+       double fa1;
        Expresion ex= new Expresion(funcion);
        fa1=ex.evaluar(a);
        
-        return fa1;
+       return fa1;
     }
     
-    double fb (String funcion, double b) throws Exception
+    public double fb (String funcion, double b) throws Exception
     {
-        double fb1;
+       double fb1;
        Expresion ex= new Expresion(funcion);
        fb1=ex.evaluar(b);
        
-        return fb1;
+       return fb1;
     }
     
-    double XrRf (double a, double b, double fa, double fb) throws Exception
+    public double Xr(double a, double b, double fa, double fb) throws Exception
     {
         double xr;
         xr=b-(((fb)*(a-b))/(fa-fb));
         return xr;
     }
-    double fxr (String funcion, double xr) throws Exception
+    
+    public double fxr(String funcion, double xr) throws Exception
     {
-        double fxr1;
+       double fxr1;
        Expresion ex= new Expresion(funcion);
        fxr1=ex.evaluar(xr);
        
-        return fxr1;
+       return fxr1;
     }
-    public static void main (String args[]) throws Exception
+    
+    /*public static void main (String args[]) throws Exception
     {
         double a,b,xr,fa,fb;
         String funcion;
@@ -62,5 +55,5 @@ public class ReglaFalsa {
        System.out.println(rf.fxr(funcion, xr));
        
        
-    }
+    }*/
 }

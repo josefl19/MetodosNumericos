@@ -1,18 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Algoritmos;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author marianaortc
- */
-public class PuntoFijo {
-    void datos() throws Exception
+public class PuntoFijo 
+{
+    public double fx(String funcion, double x0) throws Exception
+    {
+       double x1;
+       Expresion ex = new Expresion(funcion);
+       x1 = ex.evaluar(x0);
+       return x1;
+    }
+
+    /*void datos() throws Exception
     {
     double x0, x1;
     String funcion;
@@ -21,6 +21,5 @@ public class PuntoFijo {
     Expresion ex= new Expresion(funcion);
        x1=ex.evaluar(x0);
        x0=x1;
-    }
-    
+    }*/
 }
