@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
-  <Properties>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[685, 293]"/>
-    </Property>
-  </Properties>
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -21,29 +16,28 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <Component id="jLabel1" pref="665" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtFuncion" min="-2" pref="198" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txtX0" min="-2" pref="75" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
-                      <Component id="btnCalcular" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
+                      <Component id="txtFuncion" min="-2" pref="200" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="jLabel4" min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jTextField1" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="jLabel5" min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTextField2" min="-2" pref="70" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="452" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -52,18 +46,18 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="25" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="txtFuncion" alignment="0" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel3" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="txtX0" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jLabel2" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="btnCalcular" alignment="0" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel2" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="txtFuncion" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="jLabel4" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="jTextField1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="jLabel5" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="jTextField2" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="201" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="279" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -76,33 +70,36 @@
           <Font name="Tahoma" size="14" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="M&#xc9;TODO DEL PUNTO FIJO"/>
+        <Property name="text" type="java.lang.String" value="M&#xc9;TODO DE LA SECANTE"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="x0:"/>
+        <Property name="text" type="java.lang.String" value="f(x)="/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtFuncion">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="f(x):"/>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="X i-1:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtX0">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtX0ActionPerformed"/>
-      </Events>
+    <Component class="javax.swing.JTextField" name="jTextField1">
     </Component>
-    <Component class="javax.swing.JButton" name="btnCalcular">
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="X i:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextField2">
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="text" type="java.lang.String" value="CALCULAR"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalcularActionPerformed"/>
-      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -114,15 +111,33 @@
         <Component class="javax.swing.JTable" name="tblResultados">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="0">
+              <Table columnCount="7" rowCount="0">
                 <Column editable="false" title="No." type="java.lang.Integer"/>
-                <Column editable="false" title="X0" type="java.lang.Double"/>
-                <Column editable="false" title="X1" type="java.lang.Double"/>
-                <Column editable="false" title="f(x)" type="java.lang.Double"/>
+                <Column editable="false" title="Xi-1" type="java.lang.Double"/>
+                <Column editable="false" title="Xi" type="java.lang.Double"/>
+                <Column editable="false" title="f(Xi)" type="java.lang.Double"/>
+                <Column editable="false" title="f(Xi-1)" type="java.lang.Double"/>
+                <Column editable="true" title="X i+1" type="java.lang.Double"/>
+                <Column editable="true" title="Error" type="java.lang.Double"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>

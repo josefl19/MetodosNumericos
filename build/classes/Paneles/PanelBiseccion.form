@@ -48,19 +48,19 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" pref="25" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="txtLimiteA" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtLimiteB" alignment="0" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel1" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="txtFuncion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtFuncion" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="btnCalcular" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCalcular" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="txtLimiteB" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="205" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="273" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>

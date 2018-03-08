@@ -1,4 +1,4 @@
-import Algoritmos.Biseccion;
+import Algoritmos.*;
 import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,7 +12,7 @@ public class PanelBiseccion extends javax.swing.JPanel
     //double limiteA, limiteB; 
     double Xr, XrAnt;
     double fA, fB, fXr;
-    String funcion, vacio = " ";
+    String funcion;
     
     public PanelBiseccion() {
         initComponents();
@@ -124,17 +124,17 @@ public class PanelBiseccion extends javax.swing.JPanel
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtLimiteA)
-                    .addComponent(txtLimiteB)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtLimiteA, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtFuncion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFuncion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnCalcular)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLimiteB))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -150,6 +150,8 @@ public class PanelBiseccion extends javax.swing.JPanel
         funcion = txtFuncion.getText();
         double limiteA = Double.parseDouble(txtLimiteA.getText());
         double limiteB = Double.parseDouble(txtLimiteB.getText());
+        
+        Grafico g = new Grafico();
                 
         DefaultTableModel tabla = (DefaultTableModel) tblResultados.getModel();
         Object[] fila = new Object[8];

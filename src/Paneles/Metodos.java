@@ -3,6 +3,11 @@ public class Metodos extends javax.swing.JFrame
     public Metodos() {
         initComponents();
     }
+    
+    public void grafica(String funcion)
+    {
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -14,9 +19,8 @@ public class Metodos extends javax.swing.JFrame
     private void initComponents() {
 
         panelPrincipal = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        panelGrafico = new javax.swing.JPanel();
+        jMenuPrincipal = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuSalir = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -25,10 +29,13 @@ public class Metodos extends javax.swing.JFrame
         jMenu3 = new javax.swing.JMenu();
         jMenuPuntoFijo = new javax.swing.JMenuItem();
         jMenuNewton = new javax.swing.JMenuItem();
+        jMenuSecante = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        panelPrincipal.setPreferredSize(new java.awt.Dimension(685, 293));
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
@@ -38,26 +45,18 @@ public class Metodos extends javax.swing.JFrame
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 368, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("GRAFICO");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(231, Short.MAX_VALUE))
+        javax.swing.GroupLayout panelGraficoLayout = new javax.swing.GroupLayout(panelGrafico);
+        panelGrafico.setLayout(panelGraficoLayout);
+        panelGraficoLayout.setHorizontalGroup(
+            panelGraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 394, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(260, Short.MAX_VALUE))
+        panelGraficoLayout.setVerticalGroup(
+            panelGraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 368, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Inicio");
@@ -65,11 +64,11 @@ public class Metodos extends javax.swing.JFrame
         jMenuSalir.setText("Salir");
         jMenu1.add(jMenuSalir);
 
-        jMenuBar1.add(jMenu1);
+        jMenuPrincipal.add(jMenu1);
 
         jMenu2.setText("Unidad 1");
 
-        jMenuBiseccion.setText("Método de Bisección");
+        jMenuBiseccion.setText("Método Bisección");
         jMenuBiseccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuBiseccionActionPerformed(evt);
@@ -77,7 +76,7 @@ public class Metodos extends javax.swing.JFrame
         });
         jMenu2.add(jMenuBiseccion);
 
-        jMenuReglaFalsa.setText("Método de la Regla Falsa");
+        jMenuReglaFalsa.setText("Método Regla Falsa");
         jMenuReglaFalsa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuReglaFalsaActionPerformed(evt);
@@ -85,7 +84,7 @@ public class Metodos extends javax.swing.JFrame
         });
         jMenu2.add(jMenuReglaFalsa);
 
-        jMenuBar1.add(jMenu2);
+        jMenuPrincipal.add(jMenu2);
 
         jMenu3.setText("Unidad 2");
 
@@ -105,15 +104,18 @@ public class Metodos extends javax.swing.JFrame
         });
         jMenu3.add(jMenuNewton);
 
-        jMenuBar1.add(jMenu3);
+        jMenuSecante.setText("Método Secante");
+        jMenu3.add(jMenuSecante);
+
+        jMenuPrincipal.add(jMenu3);
 
         jMenu4.setText("Unidad 3");
-        jMenuBar1.add(jMenu4);
+        jMenuPrincipal.add(jMenu4);
 
         jMenu5.setText("Unidad 4");
-        jMenuBar1.add(jMenu5);
+        jMenuPrincipal.add(jMenu5);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenuPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,17 +125,17 @@ public class Metodos extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelGrafico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         pack();
@@ -141,7 +143,7 @@ public class Metodos extends javax.swing.JFrame
 
     private void jMenuBiseccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuBiseccionActionPerformed
         PanelBiseccion pb = new PanelBiseccion();
-        pb.setSize(685,293);
+        pb.setSize(685,368);
         panelPrincipal.removeAll();
         panelPrincipal.add(pb);
         panelPrincipal.revalidate();
@@ -150,7 +152,7 @@ public class Metodos extends javax.swing.JFrame
 
     private void jMenuReglaFalsaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuReglaFalsaActionPerformed
         PanelReglaFalsa prf = new PanelReglaFalsa();
-        prf.setSize(685,293);
+        prf.setSize(685,368);
         panelPrincipal.removeAll();
         panelPrincipal.add(prf);
         panelPrincipal.revalidate();
@@ -159,7 +161,7 @@ public class Metodos extends javax.swing.JFrame
 
     private void jMenuPuntoFijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuPuntoFijoActionPerformed
         PanelPuntoFijo pf = new PanelPuntoFijo();
-        pf.setSize(685,293);
+        pf.setSize(685,368);
         panelPrincipal.removeAll();
         panelPrincipal.add(pf);
         panelPrincipal.revalidate();
@@ -207,19 +209,19 @@ public class Metodos extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuBiseccion;
     private javax.swing.JMenuItem jMenuNewton;
+    private javax.swing.JMenuBar jMenuPrincipal;
     private javax.swing.JMenuItem jMenuPuntoFijo;
     private javax.swing.JMenuItem jMenuReglaFalsa;
     private javax.swing.JMenu jMenuSalir;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem jMenuSecante;
+    private javax.swing.JPanel panelGrafico;
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
 }
