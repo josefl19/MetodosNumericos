@@ -1,3 +1,6 @@
+
+import Paneles.PanelSecante;
+
 public class Metodos extends javax.swing.JFrame 
 {
     public Metodos() {
@@ -105,6 +108,11 @@ public class Metodos extends javax.swing.JFrame
         jMenu3.add(jMenuNewton);
 
         jMenuSecante.setText("Método Secante");
+        jMenuSecante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSecanteActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuSecante);
 
         jMenuPrincipal.add(jMenu3);
@@ -169,8 +177,21 @@ public class Metodos extends javax.swing.JFrame
     }//GEN-LAST:event_jMenuPuntoFijoActionPerformed
 
     private void jMenuNewtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuNewtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuNewtonActionPerformed
+   PanelNewton nr = new PanelNewton();
+        nr.setSize(685,368);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(nr);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();    }//GEN-LAST:event_jMenuNewtonActionPerformed
+
+    private void jMenuSecanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSecanteActionPerformed
+          PanelSecante ps = new PanelSecante();
+        ps.setSize(685,368);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(ps);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+    }//GEN-LAST:event_jMenuSecanteActionPerformed
 
     /**
      * @param args the command line arguments
