@@ -137,7 +137,7 @@ public class PanelPuntoFijo extends javax.swing.JPanel
             fila[1] = x0; // Limite de a
             
             try {
-                x1 = pf.x1(funcion, x0);
+                x1 = Double.parseDouble(pf.x1(funcion, x0));
             } catch (Exception ex) {
                 Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -153,11 +153,11 @@ public class PanelPuntoFijo extends javax.swing.JPanel
             
             if(iteracion != 1)
             {
-                error = Math.abs(((x1-xAnt)/x1)*100);
+                error = Double.parseDouble(pf.error(xAnt, x1));
                 fila[3] = error; // Error
             }
             else
-                fila[3] = error; // Error
+                fila[3] = ""; // Error
             
             tabla.addRow(fila);
             iteracion++;

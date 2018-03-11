@@ -64,7 +64,7 @@ public class PanelBiseccion extends javax.swing.JPanel
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false
@@ -186,19 +186,19 @@ public class PanelBiseccion extends javax.swing.JPanel
             }
             
             try {
-                fXr = b.fxr(funcion, Xr);
+                fXr =Double.parseDouble(b.fxr(funcion, Xr));
             } catch (Exception ex) {
                 Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             try {
-                fA = b.fxr(funcion, limiteA);
+                fA = Double.parseDouble(b.fxr(funcion, limiteA));
             } catch (Exception ex) {
                 Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             try {
-                fB = b.fa(funcion, limiteB);
+                fB = Double.parseDouble(b.fa(funcion, limiteB));
             } catch (Exception ex) {
                 Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -213,11 +213,11 @@ public class PanelBiseccion extends javax.swing.JPanel
             
             if(iteracion != 1)
             {
-                error = Math.abs(((Xr-XrAnt)/Xr)*100);
+                error = Double.parseDouble(b.error(XrAnt, Xr));
                 fila[7] = error; // Error
             }
             else
-                fila[7] = Double.parseDouble(decimales.format(error)); // Error
+                fila[7] = ""; // Error
             
             tabla.addRow(fila);
             

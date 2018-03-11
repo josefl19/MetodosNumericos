@@ -65,7 +65,7 @@ public class PanelReglaFalsa extends javax.swing.JPanel
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false
@@ -164,13 +164,13 @@ public class PanelReglaFalsa extends javax.swing.JPanel
             fila[2] = limiteB; // Limite de b
             
             try {
-                fA = rf.fa(funcion, limiteA);
+                fA = Double.parseDouble(rf.fa(funcion, limiteA));
             } catch (Exception ex) {
                 Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             try {
-                fB = rf.fb(funcion, limiteB);
+                fB =Double.parseDouble( rf.fb(funcion, limiteB));
             } catch (Exception ex) {
                 Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -188,7 +188,7 @@ public class PanelReglaFalsa extends javax.swing.JPanel
             }
                
             try {
-                Xr = rf.Xr(limiteA, limiteB, fA, fB);
+                Xr = Double.parseDouble(rf.Xr(limiteA, limiteB, fA, fB));
             } catch (Exception ex) {
                 Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -200,7 +200,7 @@ public class PanelReglaFalsa extends javax.swing.JPanel
             }   
             
             try {
-                fXr = rf.fxr(funcion, Xr);
+                fXr = Double.parseDouble(rf.fxr(funcion, Xr));
             } catch (Exception ex) {
                 Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -221,11 +221,11 @@ public class PanelReglaFalsa extends javax.swing.JPanel
             
             if(iteracion != 1)
             {
-                error = Math.abs(((Xr-XrAnt)/Xr)*100);
+                error = Double.parseDouble(rf.error(XrAnt, Xr));
                 fila[7] = error; // Error
             }
             else
-                fila[7] = Double.parseDouble(decimales.format(error)); // Error
+                fila[7] = ""; // Error
             
             tabla.addRow(fila);
             

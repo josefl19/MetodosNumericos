@@ -104,13 +104,13 @@
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="8" rowCount="0">
                 <Column editable="false" title="NO." type="java.lang.Integer"/>
-                <Column editable="false" title="a" type="java.lang.Double"/>
-                <Column editable="false" title="b" type="java.lang.Double"/>
-                <Column editable="false" title="f(a)" type="java.lang.Double"/>
-                <Column editable="false" title="f(b)" type="java.lang.Double"/>
-                <Column editable="false" title="Xr" type="java.lang.Double"/>
-                <Column editable="false" title="f(Xr)" type="java.lang.Double"/>
-                <Column editable="false" title="Error" type="java.lang.Double"/>
+                <Column editable="false" title="a" type="java.lang.String"/>
+                <Column editable="false" title="b" type="java.lang.String"/>
+                <Column editable="false" title="f(a)" type="java.lang.String"/>
+                <Column editable="false" title="f(b)" type="java.lang.String"/>
+                <Column editable="false" title="Xr" type="java.lang.String"/>
+                <Column editable="false" title="f(Xr)" type="java.lang.String"/>
+                <Column editable="false" title="Error" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
