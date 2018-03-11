@@ -13,6 +13,7 @@ public class Expresion {
         Token(TipoToken ti, String te) { tipo=ti; texto=te;}
         Token(TipoToken ti) { tipo = ti; }
     }
+    
     Queue<Token>    colaTokens;
     String          cadenaFuncion;
     double          variable;

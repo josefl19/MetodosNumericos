@@ -2,6 +2,7 @@ package Algoritmos;
 
 import java.text.DecimalFormat;
 
+
 public class Biseccion
 {
     DecimalFormat decimales = new DecimalFormat(".000000");

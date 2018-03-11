@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class PanelReglaFalsa extends javax.swing.JPanel 
 {
+    
     DecimalFormat decimales = new DecimalFormat(".000000");
     int iteracion = 1;
     double errorPermitido = 0.01, error=1;

@@ -5,6 +5,7 @@ public class Grafico
 {
     public void grafica(String funcion)
     {
+        
         //PanelGrafico.
     }
 }

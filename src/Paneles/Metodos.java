@@ -10,6 +10,7 @@ public class Metodos extends javax.swing.JFrame
     public void grafica(String funcion)
     {
         
+        
     }
 
     /**

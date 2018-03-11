@@ -5,16 +5,30 @@
  */
 package Paneles;
 
+import Algoritmos.Biseccion;
+import Algoritmos.Grafico;
+import Algoritmos.Secante;
+import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author josef
  */
 public class PanelSecante extends javax.swing.JPanel {
-
-    /**
-     * Creates new form PanelSecante
-     */
+    
+    DecimalFormat decimales = new DecimalFormat(".000000");
+    int iteracion = 1;
+    double errorPermitido = 0.01, error=1;
+    //double limiteA, limiteB; 
+    double xi1, XrAnt;
+    double fxi1, fximinus, xi;
+    String funcion;
+    
     public PanelSecante() {
+        
         initComponents();
     }
 
@@ -31,9 +45,9 @@ public class PanelSecante extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         txtFuncion = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtxminus = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtxi = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblResultados = new javax.swing.JTable();
@@ -51,6 +65,11 @@ public class PanelSecante extends javax.swing.JPanel {
         jLabel5.setText("X i:");
 
         jButton1.setText("CALCULAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         tblResultados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -61,10 +80,10 @@ public class PanelSecante extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -93,11 +112,11 @@ public class PanelSecante extends javax.swing.JPanel {
                         .addGap(51, 51, 51)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1)
+                        .addComponent(txtxminus)
                         .addGap(39, 39, 39)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtxi, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
                         .addComponent(jButton1)))
                 .addContainerGap())
@@ -112,15 +131,77 @@ public class PanelSecante extends javax.swing.JPanel {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFuncion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtxminus, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtxi, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    Secante S = new Secante();
+        
+         funcion = txtFuncion.getText();
+        double ximinus = Double.parseDouble(txtxminus.getText());
+        double xi = Double.parseDouble(txtxi.getText());
+        
+        Grafico g = new Grafico();
+                
+        DefaultTableModel tabla = (DefaultTableModel) tblResultados.getModel();
+        Object[] fila = new Object[8];
+        
+        do
+        {
+            fila[0] = iteracion; // Iteracion
+            fila[1] = ximinus; // Limite de a
+            fila[2] = xi; // Limite de b
+            
+            try {
+                fila[3] = S.fxiSec(funcion, xi); // f(a)
+            } catch (Exception ex) {
+                Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            try {
+                fila[4] = S.fximinusSec(funcion, ximinus); // f(b)
+            } catch (Exception ex) {
+                Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        try {
+            fxi1=Double.parseDouble(S.fxiSec(funcion, xi));
+        } catch (Exception ex) {
+            Logger.getLogger(PanelSecante.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            fximinus=Double.parseDouble(S.fximinusSec(funcion, ximinus));
+        } catch (Exception ex) {
+            Logger.getLogger(PanelSecante.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            xi1=Double.parseDouble(S.xiplus1(xi, fxi1, fximinus, ximinus));
+            fila[5] = xi1;// Xr
+
+            if(iteracion != 1)
+            {
+                error = Double.parseDouble(S.error(XrAnt, xi1));
+                fila[6] = error; // Error
+            }
+            else
+                fila[6] = ""; // Error
+            
+            tabla.addRow(fila);
+            
+            XrAnt = xi1;
+            iteracion++;
+            ximinus=xi;
+            xi=xi1;
+        } while(error > errorPermitido);
+
+        tblResultados.setModel(tabla);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -130,9 +211,9 @@ public class PanelSecante extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTable tblResultados;
     private javax.swing.JTextField txtFuncion;
+    private javax.swing.JTextField txtxi;
+    private javax.swing.JTextField txtxminus;
     // End of variables declaration//GEN-END:variables
 }

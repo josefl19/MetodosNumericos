@@ -12,3 +12,4 @@ public class PuntoFijo
        return x1;
     }
 }
+

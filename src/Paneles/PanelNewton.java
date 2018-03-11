@@ -1,3 +1,13 @@
+
+import Algoritmos.Grafico;
+import Algoritmos.NewtonRaphson;
+import Algoritmos.Secante;
+import Paneles.PanelSecante;
+import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,11 +18,17 @@
  *
  * @author josef
  */
-public class PanelNewton extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelNewton
-     */
+public class PanelNewton extends javax.swing.JPanel {
+DecimalFormat decimales = new DecimalFormat(".000000");
+
+    int iteracion = 1;
+    double errorPermitido = 0.01, error=1;
+    //double limiteA, limiteB; 
+    double xi1, XrAnt;
+    double fxi1, fxiderivada, xi;
+    String funcion,derivada;
+
     public PanelNewton() {
         initComponents();
     }
@@ -49,6 +65,11 @@ public class PanelNewton extends javax.swing.JPanel {
         jLabel4.setText("xi:");
 
         btnCalcular.setText("CALCULAR");
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularActionPerformed(evt);
+            }
+        });
 
         tblResultados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -59,10 +80,10 @@ public class PanelNewton extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -123,6 +144,71 @@ public class PanelNewton extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
+    NewtonRaphson N = new NewtonRaphson();
+        
+         funcion = txtFuncion.getText();
+         derivada= txtDerivada.getText();
+       
+        double xi = Double.parseDouble(txtXi.getText());
+        
+        Grafico g = new Grafico();
+                
+        DefaultTableModel tabla = (DefaultTableModel) tblResultados.getModel();
+        Object[] fila = new Object[8];
+        
+        do
+        {
+            fila[0] = iteracion; // Iteracion
+            fila[1] = xi; // Limite de a
+       
+            
+            try {
+                fila[2] = N.fxiNR(funcion, xi); // f(a)
+            } catch (Exception ex) {
+                Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            try {
+                fila[3] = N.dfxiNR(derivada, xi); // f(b)
+            } catch (Exception ex) {
+                Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        try {
+            
+            fxi1=Double.parseDouble(N.fxiNR(funcion, xi));
+            
+        } catch (Exception ex) {
+            Logger.getLogger(PanelSecante.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            fxiderivada=Double.parseDouble(N.dfxiNR(derivada, xi));
+        } catch (Exception ex) {
+            Logger.getLogger(PanelSecante.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            xi1=Double.parseDouble(N.xiplus1(xi, fxi1,fxiderivada));
+            fila[4] = xi1;// Xr
+
+            if(iteracion != 1)
+            {
+                error =Double.parseDouble( N.error(XrAnt,xi1));
+                fila[5] = error; // Error
+            }
+            else
+                fila[5] = ""; // Error
+            
+            tabla.addRow(fila);
+            
+            XrAnt = xi1;
+            iteracion++;
+            xi=xi1;
+            
+        } while(error > errorPermitido);
+
+        tblResultados.setModel(tabla);
+    }//GEN-LAST:event_btnCalcularActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

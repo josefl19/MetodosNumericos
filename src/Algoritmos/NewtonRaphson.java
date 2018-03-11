@@ -8,6 +8,7 @@ public class NewtonRaphson {
     Expresion ex,expr;
     String fxi1,dfxi1,ximas,xact1,xant1,error1;
     
+    
     public String fxiNR(String funcion,double xi) throws Exception
     {
         ex= new Expresion(funcion);

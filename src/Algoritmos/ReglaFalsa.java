@@ -12,6 +12,7 @@ public class ReglaFalsa {
        return fa1;
     }
     
+    
     public double fb (String funcion, double b) throws Exception
     {
        double fb1;
