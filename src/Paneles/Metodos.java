@@ -1,18 +1,13 @@
 
+import Paneles.PanelGrafico;
 import Paneles.PanelSecante;
 
 public class Metodos extends javax.swing.JFrame 
-{
+{ 
     public Metodos() {
         initComponents();
     }
     
-    public void grafica(String funcion)
-    {
-        
-        
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

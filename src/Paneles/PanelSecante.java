@@ -5,8 +5,8 @@
  */
 package Paneles;
 
-import Algoritmos.Biseccion;
 import Algoritmos.Grafico;
+import Algoritmos.Biseccion;
 import Algoritmos.Secante;
 import java.text.DecimalFormat;
 import java.util.logging.Level;

@@ -226,6 +226,7 @@ public class PanelBiseccion extends javax.swing.JPanel
         } while(error > errorPermitido || (fA*fXr)==0);
 
         tblResultados.setModel(tabla);
+        g.grafica(funcion, Xr);
     }//GEN-LAST:event_btnCalcularActionPerformed
     
     private void txtLimiteAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLimiteAActionPerformed
