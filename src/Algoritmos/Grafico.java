@@ -1,5 +1,7 @@
 package Algoritmos;
-import Paneles.PanelGrafico;
+import Paneles.*;
+import static Paneles.Metodos.panelGrafico;
+import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -15,19 +17,17 @@ import org.nfunk.jep.JEP;
 public class Grafico 
 {
     public void grafica(String funcion, double lx0)
-    {
-        PanelGrafico pg = new PanelGrafico();
-        int i;
+    {  
         // pasamos a graficar a la funcion
         // arreglos usados para almacenar una particion en un intervalo en el que esta definoda la funcion ingresada
         double x[] = new double[200];
         double y[] = new double[200];
                 
-        double xi = lx0-10;//variable usada para los puntos dentro de la particion
+        double xi = lx0-10; //variable usada para los puntos dentro de la particion
         
-        for (i = 0; i < 200; i++) 
+        for (int i = 0; i < 200; i++) 
         {
-            x[i] = xi + i * 0.1; //almacenamos valores xi que seran evaluados en la funcion ingresada es decir f(xi)
+            x[i] = xi + i * 0.12; //almacenamos valores xi que seran evaluados en la funcion ingresada es decir f(xi)
 
             JEP funcionx_h = new JEP();
             funcionx_h.addStandardFunctions(); // adiciona las funciones matem´aticas
@@ -46,7 +46,7 @@ public class Grafico
                 y[i] = funcionx_h.getValue();// almacenamos el valor f(xi)  en el arreglo y
             }
             
-            pg.setVisible(true);// hace visible el panel de grafica
+            panelGrafico.setVisible(true);// hace visible el panel de grafica
             ChartPanel panel = null;
             JFreeChart chart = null;
             XYSplineRenderer renderer = new XYSplineRenderer();// rederizador para poder hacer el grafico
@@ -56,11 +56,10 @@ public class Grafico
             ValueAxis ejey = new NumberAxis();//variable usada para definir el eje y
 
             XYSeries serie = new XYSeries("datos");// variable que almacenaras los datos ingresados en la tabla de cinco dilas
-            XYPlot plot;
-            pg.removeAll();// remueve todo lo que esta en el panel de lineas
+            panelGrafico.removeAll();// remueve todo lo que esta en el panel de lineas
             
-            for (i = 0; i < x.length; i++) {
-                    serie.add(x[i], y[i]);
+            for (int j = 0; j < x.length; j++) {
+                    serie.add(x[j], y[j]);
                 }//
             
             dataset.addSeries(serie);// adiere la serie a la  XYSeriesCollection
@@ -72,12 +71,13 @@ public class Grafico
                 chart =ChartFactory.createXYLineChart("", "Eje X","Eje Y",dataset,PlotOrientation.VERTICAL,false,false,true );
                 
 
-                chart.setTitle("Grafico f(x) ="+funcion);// le ponemos un titulo a nuestro grafico
+                chart.setTitle("f(x) =" + funcion);// le ponemos un titulo a nuestro grafico
                  
                 panel = new ChartPanel(chart);
-                panel.setBounds(15, 15, 500, 400);// establecemos la posicion donde se visalizara la grafica de interpolacion
-                pg.add(panel);// se adiere la grafica al JPanel
-                pg.repaint();
+                panel.setBounds(5, 5, 512, 400);// establecemos la posicion donde se visalizara la grafica de interpolacion
+                panelGrafico.add(panel);// se adiere la grafica al JPanel
+                panelGrafico.repaint();
+                 
 
         }
     }

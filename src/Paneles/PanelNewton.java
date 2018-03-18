@@ -1,4 +1,4 @@
-
+package Paneles;
 import Algoritmos.Grafico;
 import Algoritmos.NewtonRaphson;
 import Algoritmos.Secante;

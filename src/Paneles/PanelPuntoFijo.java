@@ -1,4 +1,4 @@
-
+package Paneles;
 import Algoritmos.PuntoFijo;
 import Algoritmos.ReglaFalsa;
 import java.util.logging.Level;

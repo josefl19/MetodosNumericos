@@ -1,9 +1,11 @@
+package Paneles;
 
-import Paneles.PanelGrafico;
-import Paneles.PanelSecante;
+//import Paneles.*;
+import javax.swing.JPanel;
 
 public class Metodos extends javax.swing.JFrame 
 { 
+    
     public Metodos() {
         initComponents();
     }
@@ -30,6 +32,9 @@ public class Metodos extends javax.swing.JFrame
         jMenuNewton = new javax.swing.JMenuItem();
         jMenuSecante = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuGauss = new javax.swing.JMenuItem();
+        jMenuGaussJordan = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -51,11 +56,11 @@ public class Metodos extends javax.swing.JFrame
         panelGrafico.setLayout(panelGraficoLayout);
         panelGraficoLayout.setHorizontalGroup(
             panelGraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGap(0, 523, Short.MAX_VALUE)
         );
         panelGraficoLayout.setVerticalGroup(
             panelGraficoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 368, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Inicio");
@@ -114,6 +119,27 @@ public class Metodos extends javax.swing.JFrame
         jMenuPrincipal.add(jMenu3);
 
         jMenu4.setText("Unidad 3");
+
+        jMenu6.setText("Solución de Ecuaciones");
+
+        jMenuGauss.setText("Gauss");
+        jMenuGauss.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuGaussActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuGauss);
+
+        jMenuGaussJordan.setText("Gauss-Jordan");
+        jMenuGaussJordan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuGaussJordanActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuGaussJordan);
+
+        jMenu4.add(jMenu6);
+
         jMenuPrincipal.add(jMenu4);
 
         jMenu5.setText("Unidad 4");
@@ -128,7 +154,7 @@ public class Metodos extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelGrafico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -137,9 +163,9 @@ public class Metodos extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 10, Short.MAX_VALUE))
+                    .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 8, Short.MAX_VALUE))
         );
 
         pack();
@@ -173,7 +199,7 @@ public class Metodos extends javax.swing.JFrame
     }//GEN-LAST:event_jMenuPuntoFijoActionPerformed
 
     private void jMenuNewtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuNewtonActionPerformed
-   PanelNewton nr = new PanelNewton();
+        PanelNewton nr = new PanelNewton();
         nr.setSize(685,368);
         panelPrincipal.removeAll();
         panelPrincipal.add(nr);
@@ -181,13 +207,33 @@ public class Metodos extends javax.swing.JFrame
         panelPrincipal.repaint();    }//GEN-LAST:event_jMenuNewtonActionPerformed
 
     private void jMenuSecanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSecanteActionPerformed
-          PanelSecante ps = new PanelSecante();
+        PanelSecante ps = new PanelSecante();
         ps.setSize(685,368);
         panelPrincipal.removeAll();
         panelPrincipal.add(ps);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
     }//GEN-LAST:event_jMenuSecanteActionPerformed
+
+    private void jMenuGaussActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGaussActionPerformed
+        // TODO add your handling code here:
+        PanelGauss pg = new PanelGauss();
+        pg.setSize(685,368);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(pg);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+    }//GEN-LAST:event_jMenuGaussActionPerformed
+
+    private void jMenuGaussJordanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGaussJordanActionPerformed
+        // TODO add your handling code here:
+        PanelGauss_Jordan pgj = new PanelGauss_Jordan();
+        pgj.setSize(685,368);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(pgj);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+    }//GEN-LAST:event_jMenuGaussJordanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,14 +277,17 @@ public class Metodos extends javax.swing.JFrame
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuItem jMenuBiseccion;
+    private javax.swing.JMenuItem jMenuGauss;
+    private javax.swing.JMenuItem jMenuGaussJordan;
     private javax.swing.JMenuItem jMenuNewton;
     private javax.swing.JMenuBar jMenuPrincipal;
     private javax.swing.JMenuItem jMenuPuntoFijo;
     private javax.swing.JMenuItem jMenuReglaFalsa;
     private javax.swing.JMenu jMenuSalir;
     private javax.swing.JMenuItem jMenuSecante;
-    private javax.swing.JPanel panelGrafico;
+    public static javax.swing.JPanel panelGrafico;
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
 }

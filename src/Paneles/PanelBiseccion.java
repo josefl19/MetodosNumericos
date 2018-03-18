@@ -1,4 +1,6 @@
+package Paneles;
 import Algoritmos.*;
+import static Paneles.Metodos.panelGrafico;
 import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -6,7 +8,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class PanelBiseccion extends javax.swing.JPanel 
 {
-    
     DecimalFormat decimales = new DecimalFormat(".000000");
     int iteracion = 1;
     double errorPermitido = 0.01, error=1;
@@ -14,6 +15,7 @@ public class PanelBiseccion extends javax.swing.JPanel
     double Xr, XrAnt;
     double fA, fB, fXr;
     String funcion;
+    Grafico g = new Grafico();
     
     public PanelBiseccion() {
         initComponents();
@@ -152,9 +154,7 @@ public class PanelBiseccion extends javax.swing.JPanel
         funcion = txtFuncion.getText();
         double limiteA = Double.parseDouble(txtLimiteA.getText());
         double limiteB = Double.parseDouble(txtLimiteB.getText());
-        
-        Grafico g = new Grafico();
-                
+           
         DefaultTableModel tabla = (DefaultTableModel) tblResultados.getModel();
         Object[] fila = new Object[8];
         
@@ -226,7 +226,8 @@ public class PanelBiseccion extends javax.swing.JPanel
         } while(error > errorPermitido || (fA*fXr)==0);
 
         tblResultados.setModel(tabla);
-        g.grafica(funcion, Xr);
+        
+        g.grafica(funcion, (limiteA-limiteB)/2);
     }//GEN-LAST:event_btnCalcularActionPerformed
     
     private void txtLimiteAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLimiteAActionPerformed
