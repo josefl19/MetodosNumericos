@@ -8,7 +8,6 @@ package Paneles;
 import Algoritmos.Grafico;
 import Algoritmos.Biseccion;
 import Algoritmos.Secante;
-import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -19,13 +18,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PanelSecante extends javax.swing.JPanel {
     
-    DecimalFormat decimales = new DecimalFormat(".000000");
     int iteracion = 1;
     double errorPermitido = 0.01, error=1;
-    //double limiteA, limiteB; 
     double xi1, XrAnt;
     double fxi1, fximinus, xi;
     String funcion;
+    
+    Grafico g = new Grafico();
     
     public PanelSecante() {
         
@@ -144,7 +143,7 @@ public class PanelSecante extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     Secante S = new Secante();
         
-         funcion = txtFuncion.getText();
+        funcion = txtFuncion.getText();
         double ximinus = Double.parseDouble(txtxminus.getText());
         double xi = Double.parseDouble(txtxi.getText());
         
@@ -200,7 +199,8 @@ public class PanelSecante extends javax.swing.JPanel {
             xi=xi1;
         } while(error > errorPermitido);
 
-        tblResultados.setModel(tabla);        // TODO add your handling code here:
+        tblResultados.setModel(tabla);
+        g.grafica(funcion, (ximinus-xi)/2);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

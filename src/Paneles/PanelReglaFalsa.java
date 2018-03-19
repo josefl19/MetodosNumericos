@@ -1,21 +1,21 @@
 package Paneles;
+import Algoritmos.Grafico;
 import Algoritmos.ReglaFalsa;
 
-import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 public class PanelReglaFalsa extends javax.swing.JPanel 
 {
-    
-    DecimalFormat decimales = new DecimalFormat(".000000");
     int iteracion = 1;
     double errorPermitido = 0.01, error=1;
     //double limiteA, limiteB; 
     double Xr, XrAnt;
     double fA, fB, fXr;
     String funcion, vacio = " ";
+    
+    Grafico g = new Grafico();
     
     public PanelReglaFalsa() {
         initComponents();
@@ -235,6 +235,7 @@ public class PanelReglaFalsa extends javax.swing.JPanel
         } while(error > errorPermitido || (fA*fXr)==0);
 
         tblResultados.setModel(tabla);
+        g.grafica(funcion, (limiteA-limiteB)/2);
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void txtLimiteAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLimiteAActionPerformed

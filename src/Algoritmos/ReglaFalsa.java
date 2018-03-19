@@ -26,7 +26,6 @@ public class ReglaFalsa {
     
     public String Xr(double a, double b, double fa, double fb) throws Exception
     {
-        
         xr=b-(((fb)*(a-b))/(fa-fb));
         xr1=String.format("%.6f", xr);
         return xr1;
@@ -36,7 +35,7 @@ public class ReglaFalsa {
     {
        Expresion ex= new Expresion(funcion);
        fxr=ex.evaluar(xr);
-       fxr1=String.format("%.6f", fxr1);
+       fxr1=String.format("%.6f", fxr);
        
        return fxr1;
     }

@@ -3,7 +3,6 @@ import Algoritmos.Grafico;
 import Algoritmos.NewtonRaphson;
 import Algoritmos.Secante;
 import Paneles.PanelSecante;
-import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -19,15 +18,14 @@ import javax.swing.table.DefaultTableModel;
  * @author josef
  */
 
-public class PanelNewton extends javax.swing.JPanel {
-DecimalFormat decimales = new DecimalFormat(".000000");
-
+public class PanelNewton extends javax.swing.JPanel 
+{
     int iteracion = 1;
     double errorPermitido = 0.01, error=1;
-    //double limiteA, limiteB; 
     double xi1, XrAnt;
     double fxi1, fxiderivada, xi;
     String funcion,derivada;
+    Grafico g = new Grafico();
 
     public PanelNewton() {
         initComponents();
@@ -148,12 +146,10 @@ DecimalFormat decimales = new DecimalFormat(".000000");
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
     NewtonRaphson N = new NewtonRaphson();
         
-         funcion = txtFuncion.getText();
-         derivada= txtDerivada.getText();
+        funcion = txtFuncion.getText();
+        derivada= txtDerivada.getText();
        
         double xi = Double.parseDouble(txtXi.getText());
-        
-        Grafico g = new Grafico();
                 
         DefaultTableModel tabla = (DefaultTableModel) tblResultados.getModel();
         Object[] fila = new Object[8];
@@ -162,8 +158,7 @@ DecimalFormat decimales = new DecimalFormat(".000000");
         {
             fila[0] = iteracion; // Iteracion
             fila[1] = xi; // Limite de a
-       
-            
+
             try {
                 fila[2] = N.fxiNR(funcion, xi); // f(a)
             } catch (Exception ex) {
@@ -208,6 +203,8 @@ DecimalFormat decimales = new DecimalFormat(".000000");
         } while(error > errorPermitido);
 
         tblResultados.setModel(tabla);
+        g.grafica(funcion, xi);
+
     }//GEN-LAST:event_btnCalcularActionPerformed
 
 

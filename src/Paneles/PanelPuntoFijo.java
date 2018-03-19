@@ -1,4 +1,5 @@
 package Paneles;
+import Algoritmos.Grafico;
 import Algoritmos.PuntoFijo;
 import Algoritmos.ReglaFalsa;
 import java.util.logging.Level;
@@ -11,6 +12,7 @@ public class PanelPuntoFijo extends javax.swing.JPanel
     double x0, x1, xAnt;
     int iteracion=1;
     double error = 1, errorPermitido = 0.0001;
+    Grafico g = new Grafico();
     
     public PanelPuntoFijo() {
         initComponents();
@@ -132,7 +134,6 @@ public class PanelPuntoFijo extends javax.swing.JPanel
         
         do
         {
-            
             fila[0] = iteracion; // Iteracion
             fila[1] = x0; // Limite de a
             
@@ -143,7 +144,7 @@ public class PanelPuntoFijo extends javax.swing.JPanel
             }
             
             try {
-                fila[2] = x1; // f(a)
+                fila[2] = x1;
             } catch (Exception ex) {
                 Logger.getLogger(PanelBiseccion.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -161,9 +162,11 @@ public class PanelPuntoFijo extends javax.swing.JPanel
             
             tabla.addRow(fila);
             iteracion++;
+            
         } while(error > errorPermitido);
 
         tblResultados.setModel(tabla);
+        g.grafica(funcion, x0);
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void txtX0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtX0ActionPerformed

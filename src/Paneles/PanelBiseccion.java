@@ -1,17 +1,14 @@
 package Paneles;
 import Algoritmos.*;
 import static Paneles.Metodos.panelGrafico;
-import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 public class PanelBiseccion extends javax.swing.JPanel 
 {
-    DecimalFormat decimales = new DecimalFormat(".000000");
     int iteracion = 1;
     double errorPermitido = 0.01, error=1;
-    //double limiteA, limiteB; 
     double Xr, XrAnt;
     double fA, fB, fXr;
     String funcion;
