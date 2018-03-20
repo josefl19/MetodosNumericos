@@ -7,6 +7,7 @@ package Paneles;
 import Algoritmos.Gauss;
 
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,7 +16,9 @@ import javax.swing.JTextField;
 public class PanelGauss extends javax.swing.JPanel 
 {
     Gauss g = new Gauss();
-    
+    float [][] matriz=new float[11][11];
+    int n;
+
     public PanelGauss() {
         initComponents();
         
@@ -27,6 +30,21 @@ public class PanelGauss extends javax.swing.JPanel
         grupo_opciones.add(opt8);
         grupo_opciones.add(opt9);
         grupo_opciones.add(opt10);
+    }
+    public void matriz(int n, float matriz[][])
+    {
+        
+        DefaultTableModel model= (DefaultTableModel)tblMatriz.getModel();
+        model.setRowCount(n);//renglones=filas
+        model.setColumnCount(n+1);
+        for(int ii=0;ii<n;ii++)
+        {
+            for(int jj=0;jj<n+1;jj++)
+            {
+                tblMatriz.setValueAt(matriz[ii][jj],ii,jj);
+                
+            }
+        }
     }
 
     /**
@@ -40,6 +58,8 @@ public class PanelGauss extends javax.swing.JPanel
 
         grupo_opciones = new javax.swing.ButtonGroup();
         panelMatriz = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblMatriz = new javax.swing.JTable();
         opt3 = new javax.swing.JRadioButton();
         opt6 = new javax.swing.JRadioButton();
         opt10 = new javax.swing.JRadioButton();
@@ -49,15 +69,37 @@ public class PanelGauss extends javax.swing.JPanel
         opt7 = new javax.swing.JRadioButton();
         opt8 = new javax.swing.JRadioButton();
 
+        tblMatriz= new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int CellIndex)
+            {
+                return true;
+            }
+        };
+        tblMatriz.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tblMatriz);
+
         javax.swing.GroupLayout panelMatrizLayout = new javax.swing.GroupLayout(panelMatriz);
         panelMatriz.setLayout(panelMatrizLayout);
         panelMatrizLayout.setHorizontalGroup(
             panelMatrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 516, Short.MAX_VALUE)
+            .addGroup(panelMatrizLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         panelMatrizLayout.setVerticalGroup(
             panelMatrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 271, Short.MAX_VALUE)
+            .addGroup(panelMatrizLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         opt3.setText("3 x 3");
@@ -163,56 +205,57 @@ public class PanelGauss extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void opt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt3ActionPerformed
-        // TODO add your handling code here:
-        int fila = 3, columna = 4;
-        JTextField[][] txtXi = g.matrizGauss(fila, columna);
-        
-        for( int i = 0 ; i < fila; i++ )
-        {
-            for( int j = 0 ; j < columna ; j++ )
-            {
-                //Se crea el boton y se agrega a las celda de la matriz
-                txtXi[i][j].setBounds(15*columna, 3*fila, 30, 25);
-                //Se da el nombre en forma de coordenada enviando la fila y columna
-                txtXi[i][j].setText("");
-                //Se agrega el boton al panel
-                panelMatriz.add( txtXi[i][j] );
-            }
-        }
+     n=3;
+        int var = 0, piv = 0;
+       matriz(n,matriz);
         
     }//GEN-LAST:event_opt3ActionPerformed
 
     private void opt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_opt4ActionPerformed
+        n=4;
+        int var = 0, piv = 0;
+       matriz(n,matriz);    }//GEN-LAST:event_opt4ActionPerformed
 
     private void opt7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt7ActionPerformed
-        // TODO add your handling code here:
+       n=7;
+        int var = 0, piv = 0;
+       matriz(n,matriz);
     }//GEN-LAST:event_opt7ActionPerformed
 
     private void opt5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt5ActionPerformed
-        // TODO add your handling code here:
+        n=5;
+        int var = 0, piv = 0;
+       matriz(n,matriz);
     }//GEN-LAST:event_opt5ActionPerformed
 
     private void opt6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt6ActionPerformed
-        // TODO add your handling code here:
+        n=6;
+        int var = 0, piv = 0;
+       matriz(n,matriz);
     }//GEN-LAST:event_opt6ActionPerformed
 
     private void opt9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt9ActionPerformed
-        // TODO add your handling code here:
+        n=9;
+        int var = 0, piv = 0;
+       matriz(n,matriz);
     }//GEN-LAST:event_opt9ActionPerformed
 
     private void opt10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt10ActionPerformed
-        // TODO add your handling code here:
+       n=10;
+        int var = 0, piv = 0;
+       matriz(n,matriz);
     }//GEN-LAST:event_opt10ActionPerformed
 
     private void opt8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt8ActionPerformed
-        // TODO add your handling code here:
+        n=8;
+        int var = 0, piv = 0;
+       matriz(n,matriz);
     }//GEN-LAST:event_opt8ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup grupo_opciones;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton opt10;
     private javax.swing.JRadioButton opt3;
     private javax.swing.JRadioButton opt4;
@@ -222,5 +265,6 @@ public class PanelGauss extends javax.swing.JPanel
     private javax.swing.JRadioButton opt8;
     private javax.swing.JRadioButton opt9;
     public static javax.swing.JPanel panelMatriz;
+    private javax.swing.JTable tblMatriz;
     // End of variables declaration//GEN-END:variables
 }
