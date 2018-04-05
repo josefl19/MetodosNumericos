@@ -3,6 +3,7 @@ package Algoritmos;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+
 public class Gauss extends JTextField
 {
     public JTextField[][] matrizGauss(int filas, int columnas)
@@ -27,7 +28,9 @@ public class Gauss extends JTextField
         }
         return panel;
     }
-       public static void muestramatriz(float matriz[][], int var) {
+    
+    public static void muestramatriz(float matriz[][], int var) 
+    {
         for (int x = 0; x < var; x++) {
             for (int y = 0; y < (var + 1); y++) {
                 System.out.print(" " + matriz[x][y] + " |");

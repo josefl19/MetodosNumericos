@@ -1,22 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Paneles;
-import Algoritmos.Gauss;
 
+import Algoritmos.Gauss;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author josef
- */
 public class PanelGauss extends javax.swing.JPanel 
 {
     Gauss g = new Gauss();
-    float [][] matriz=new float[11][11];
+    float [][] matriz = new float[11][11];
     int n;
 
     public PanelGauss() {
@@ -31,18 +22,17 @@ public class PanelGauss extends javax.swing.JPanel
         grupo_opciones.add(opt9);
         grupo_opciones.add(opt10);
     }
+    
     public void matriz(int n, float matriz[][])
-    {
-        
+    {  
         DefaultTableModel model= (DefaultTableModel)tblMatriz.getModel();
         model.setRowCount(n);//renglones=filas
         model.setColumnCount(n+1);
-        for(int ii=0;ii<n;ii++)
+        for(int ii=0; ii<n; ii++)
         {
-            for(int jj=0;jj<n+1;jj++)
+            for(int jj=0; jj<n+1; jj++)
             {
                 tblMatriz.setValueAt(matriz[ii][jj],ii,jj);
-                
             }
         }
     }
@@ -57,9 +47,6 @@ public class PanelGauss extends javax.swing.JPanel
     private void initComponents() {
 
         grupo_opciones = new javax.swing.ButtonGroup();
-        panelMatriz = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblMatriz = new javax.swing.JTable();
         opt3 = new javax.swing.JRadioButton();
         opt6 = new javax.swing.JRadioButton();
         opt10 = new javax.swing.JRadioButton();
@@ -68,39 +55,9 @@ public class PanelGauss extends javax.swing.JPanel
         opt5 = new javax.swing.JRadioButton();
         opt7 = new javax.swing.JRadioButton();
         opt8 = new javax.swing.JRadioButton();
-
-        tblMatriz= new javax.swing.JTable(){
-            public boolean isCellEditable(int rowIndex, int CellIndex)
-            {
-                return true;
-            }
-        };
-        tblMatriz.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(tblMatriz);
-
-        javax.swing.GroupLayout panelMatrizLayout = new javax.swing.GroupLayout(panelMatriz);
-        panelMatriz.setLayout(panelMatrizLayout);
-        panelMatrizLayout.setHorizontalGroup(
-            panelMatrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMatrizLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
-        panelMatrizLayout.setVerticalGroup(
-            panelMatrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMatrizLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblMatriz = new javax.swing.JTable();
+        btnCalcular = new javax.swing.JButton();
 
         opt3.setText("3 x 3");
         opt3.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +115,29 @@ public class PanelGauss extends javax.swing.JPanel
             }
         });
 
+        tblMatriz= new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int CellIndex)
+            {
+                return true;
+            }
+        };
+        tblMatriz.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tblMatriz);
+
+        btnCalcular.setText("CALCULAR");
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,33 +154,38 @@ public class PanelGauss extends javax.swing.JPanel
                     .addComponent(opt8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(opt10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(96, 96, 96))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(opt3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(opt4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(opt5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(opt6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(opt7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(opt8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(opt9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(opt10)
-                        .addGap(0, 66, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(24, 24, 24))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -252,8 +237,13 @@ public class PanelGauss extends javax.swing.JPanel
        matriz(n,matriz);
     }//GEN-LAST:event_opt8ActionPerformed
 
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
+        
+    }//GEN-LAST:event_btnCalcularActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCalcular;
     private javax.swing.ButtonGroup grupo_opciones;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton opt10;
@@ -264,7 +254,6 @@ public class PanelGauss extends javax.swing.JPanel
     private javax.swing.JRadioButton opt7;
     private javax.swing.JRadioButton opt8;
     private javax.swing.JRadioButton opt9;
-    public static javax.swing.JPanel panelMatriz;
     private javax.swing.JTable tblMatriz;
     // End of variables declaration//GEN-END:variables
 }
