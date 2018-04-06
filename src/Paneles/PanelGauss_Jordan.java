@@ -1,19 +1,21 @@
 package Paneles;
 
-import Algoritmos.Gauss;
+import Algoritmos.GaussJordan;
 import static Algoritmos.GaussJordan.muestramatriz;
+import Algoritmos.txtResultados;
 import static Paneles.Metodos.panelGrafico;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class PanelGauss_Jordan extends javax.swing.JPanel 
 {
-    Gauss g = new Gauss();
+    GaussJordan gj = new GaussJordan();
     float[][] matriz;
     int n;
-    int var;
-    JTextArea txtResultados = new JTextArea();
+    int var, piv;
+    //JTextArea txtResultados = new JTextArea();
+    txtResultados txtR =  new txtResultados();
 
     public PanelGauss_Jordan() 
     {
@@ -28,11 +30,14 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
         grupo_opciones.add(opt9);
         grupo_opciones.add(opt10);
         
-        panelGrafico.removeAll();
-        txtResultados.setBounds(0, 0, 523, 400);
-        panelGrafico.add(txtResultados);
-        panelGrafico.revalidate();
-        panelGrafico.repaint();
+        //panelGrafico.removeAll();
+        //txtResultados.setBounds(0, 0, 523, 400);
+        
+        //JScrollPane scroll = new JScrollPane(txtResultados, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        //txtResultados.
+        //panelGrafico.add(scroll);
+        //panelGrafico.revalidate();
+        //panelGrafico.repaint();
     }
     
     public void tabla(int n)
@@ -208,7 +213,7 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
 
     private void opt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt3ActionPerformed
        n=3;
-       int piv = 0;
+       piv = 0;
        var = n;
        matriz = new float[n][n+1];
        
@@ -223,42 +228,42 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
 
     private void opt7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt7ActionPerformed
        n=7;
-       int piv = 0;
+       piv = 0;
        var = n;
        tabla(n);
     }//GEN-LAST:event_opt7ActionPerformed
 
     private void opt5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt5ActionPerformed
        n=5;
-       int piv = 0;
+       piv = 0;
        var = n;
        tabla(n);
     }//GEN-LAST:event_opt5ActionPerformed
 
     private void opt6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt6ActionPerformed
        n=6;
-       int piv = 0;
+       piv = 0;
        var = n;
        tabla(n);
     }//GEN-LAST:event_opt6ActionPerformed
 
     private void opt9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt9ActionPerformed
        n=9;
-       int piv = 0;
+       piv = 0;
        var = n;
        tabla(n);
     }//GEN-LAST:event_opt9ActionPerformed
 
     private void opt10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt10ActionPerformed
        n=10;
-       int piv = 0;
+       piv = 0;
        var = n;
        tabla(n);
     }//GEN-LAST:event_opt10ActionPerformed
 
     private void opt8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt8ActionPerformed
        n=8;
-       int piv = 0;
+       piv = 0;
        var = n;
        tabla(n);
     }//GEN-LAST:event_opt8ActionPerformed
@@ -278,13 +283,16 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
             }
         }
 
-        txtResultados.setText(muestramatriz(matriz, var));
+        //txtResultados.setText(muestramatriz(matriz, var));
+        
+        //txtResultados.setText(gj.solucion(matriz, piv, var));
+        txtR.txtResultados(gj.solucion(matriz, piv, var));
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void opt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt4ActionPerformed
         // TODO add your handling code here:
         n=4;
-        int piv = 0;
+        piv = 0;
         var = n;
         tabla(n);
     }//GEN-LAST:event_opt4ActionPerformed

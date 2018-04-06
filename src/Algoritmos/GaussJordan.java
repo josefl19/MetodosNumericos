@@ -1,36 +1,10 @@
 package Algoritmos;
 
 import static Paneles.Metodos.panelGrafico;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class GaussJordan extends JTextField
-{
-    public JTextField[][] matrizGauss(int filas, int columnas)
-    {
-        JTextField[][] txtXi = new JTextField[filas][columnas];
-        return txtXi;
-    }
-    
-    public JPanel pos_tam(JTextField[][] txtXi, JPanel panel, int fila, int columna)
-    { 
-        for( int i = 1 ; i < fila; i++ )
-        {
-            for( int j = 1 ; j < columna ; j++ )
-            {
-                //Se crea el boton y se agrega a las celda de la matriz
-                txtXi[i][j].setBounds(15*columna, 3*fila, 30, 25);
-                //Se da el nombre en forma de coordenada enviando la fila y columna
-                txtXi[i][j].setText("");
-                //Se agrega el boton al panel
-                panel.add( txtXi[i][j] );
-            }
-        }
-        
-        return panel;
-    }
-       
+{     
     public static String muestramatriz(float matriz[][], int var) 
     {
         String matriz_inicial = "";
@@ -75,26 +49,37 @@ public class GaussJordan extends JTextField
         }
     }
     
-    public static void solucion(float matriz[][],int piv,int var)
+    public String solucion(float matriz[][],int piv,int var)
     {
-         for (int a = 0; a < var; a++) {
+        String procedimiento = "";
+        
+         for (int a = 0; a < var; a++) 
+         {
             pivote(matriz, piv, var);
 
             System.out.println("\tRenglon " + (a + 1) + " entre el pivote");
-            muestramatriz(matriz, var);
+            procedimiento = procedimiento + "\tRenglon " + (a + 1) + " entre el pivote";
+            procedimiento = procedimiento + "\n";
+            procedimiento = procedimiento + muestramatriz(matriz, var)+ "\n";
 
             System.out.println("");
 
+            procedimiento = procedimiento + "\tHaciendo ceros";
             System.out.println("\tHaciendo ceros");
             hacerceros(matriz, piv, var);
-
-            muestramatriz(matriz, var);
+            procedimiento = procedimiento + "\n";
+            procedimiento = procedimiento + muestramatriz(matriz, var) + "\n";
+            
             System.out.println("");
             piv++;
         }
-        for (int x = 0; x < var; x++) {
+         
+        for (int x = 0; x < var; x++) 
+        {
+            procedimiento = procedimiento + "La variable X" + (x + 1) + " es: " + matriz[x][var] + "\n";
             System.out.println("La variable X" + (x + 1) + " es: " + matriz[x][var]);
         }
-
+        
+        return procedimiento;
     }
 }
