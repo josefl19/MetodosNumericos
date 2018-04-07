@@ -1,85 +1,106 @@
 package Algoritmos;
 
-import static Paneles.Metodos.panelGrafico;
-import javax.swing.JTextField;
+import org.apache.commons.math3.fraction.*;
 
-public class GaussJordan extends JTextField
-{     
-    public static String muestramatriz(float matriz[][], int var) 
+public class GaussJordan extends Gauss {
+
+    public String evaluar(double[][] matriz, boolean pivoteo_parcial) 
     {
-        String matriz_inicial = "";
+        String cadena = "";
+        cadena = super.evaluar(matriz,pivoteo_parcial);
         
-        for (int x = 0; x < var; x++) 
+        double[][] matriz_original = this.clonar(matriz);
+       	matriz = super.matrizInicialGaussJordan(matriz,pivoteo_parcial);
+
+        int n = matriz.length;
+        double alpha = 0;
+        double[] x = new double[n];
+
+        System.out.println("--------------------------------------------------");
+        System.out.println("----------------- METODO DE GAUSS-JORDAN -----------");
+        cadena = cadena + "----------------- METODO DE GAUSS-JORDAN -----------\n";
+        System.out.println("--------------------------------------------------");
+
+        System.out.println("MATRIZ INICIAL:");
+        this.reportarmatriz(matriz);
+        cadena = cadena + "\nMATRIZ INICIAL:\n";
+        cadena = cadena + this.reportarmatriz(matriz);
+        System.out.println("");
+
+        for (int k = 1; k < n; k++) 
         {
-            for (int y = 0; y <(var + 1); y++) 
+            if (pivoteo_parcial) 
             {
-                matriz_inicial = matriz_inicial + " " + matriz[x][y] + " |";
-                System.out.print(" " + matriz[x][y] + " |");
+                matriz = this.pivoteoParcial(matriz, k);
             }
+
+            System.out.println("---------------");
+            System.out.println("I=" + k);
+            System.out.println("---------------");
             
-            matriz_inicial = matriz_inicial + "\n";
-            System.out.println("");
-        }
-        
-        return matriz_inicial;
-    }
+            //cadena = cadena + "---------------\n";
+            cadena = cadena + "I = " + k + "\n";
+            //cadena = cadena + "---------------\n";
 
-    public static void pivote(float matriz[][], int piv, int var) 
-    {
-        float temp = 0;
-        temp = matriz[piv][piv];
-        for (int y = 0; y <(var + 1); y++) 
-        {
-            matriz[piv][y] = matriz[piv][y] / temp;
-        }
-    }
-
-    public static void hacerceros(float matriz[][], int piv, int var) 
-    {
-        for (int x = 0; x < var; x++) 
-        {
-            if (x != piv) 
+            for (int i = 0; i < n; i++) 
             {
-                float c = matriz[x][piv];
-                for (int z = 0; z <(var + 1); z++) 
+                if (i != k && matriz[i][k] != 0) 
                 {
-                    matriz[x][z] = ((-1 * c) * matriz[piv][z]) + matriz[x][z];
+                    alpha = matriz[i][k] / matriz[k][k];
+                    System.out.println("alpha = " + this.redondear(matriz[i][k]) + " / " + this.redondear(matriz[k][k]) + " = " + this.redondear(alpha) + "\n");
+                    cadena = cadena + "alpha= " + this.redondear(matriz[i][k]) + " / " + this.redondear(matriz[k][k]) + " = " + this.redondear(alpha) + "\n\n" ;
+                    
+                    for (int j = k; j <= n; j++) 
+                    {
+                        System.out.println("A" + i + "" + j + "=A" + i + "" + j + "-alpha*A" + k + "" + j + " => " + this.redondear(matriz[i][j] - alpha * matriz[k][j]) + " = " + this.redondear(matriz[i][j]) + " - " + this.redondear(alpha) + " * " + this.redondear(matriz[k][j]) + "");
+                        cadena = cadena + "A" + i + "" + j + "=A" + i + "" + j + "-alpha*A" + k + "" + j + " => " + this.redondear(matriz[i][j] - alpha * matriz[k][j]) + " = " + this.redondear(matriz[i][j]) + " - " + this.redondear(alpha) + " * " + this.redondear(matriz[k][j]) + "\n";
+                        matriz[i][j] = matriz[i][j] - alpha * matriz[k][j];
+                    }
+
+                    this.reportarmatriz(matriz);
+                    cadena = cadena + "\n";
+                    cadena = cadena + this.reportarmatriz(matriz);
                 }
             }
         }
-    }
-    
-    public String solucion(float matriz[][],int piv,int var)
-    {
-        String procedimiento = "";
-        
-         for (int a = 0; a < var; a++) 
-         {
-            pivote(matriz, piv, var);
 
-            System.out.println("\tRenglon " + (a + 1) + " entre el pivote");
-            procedimiento = procedimiento + "\tRenglon " + (a + 1) + " entre el pivote";
-            procedimiento = procedimiento + "\n";
-            procedimiento = procedimiento + muestramatriz(matriz, var)+ "\n";
+        System.out.println("");
+        System.out.println("Dividiendo sobre el PIVOT");
+        cadena = cadena + "Dividiendo sobre el PIVOTE\n";
 
-            System.out.println("");
-
-            procedimiento = procedimiento + "\tHaciendo ceros";
-            System.out.println("\tHaciendo ceros");
-            hacerceros(matriz, piv, var);
-            procedimiento = procedimiento + "\n";
-            procedimiento = procedimiento + muestramatriz(matriz, var) + "\n";
-            
-            System.out.println("");
-            piv++;
-        }
-         
-        for (int x = 0; x < var; x++) 
+        for (int i = 0; i < n; i++) 
         {
-            procedimiento = procedimiento + "La variable X" + (x + 1) + " es: " + matriz[x][var] + "\n";
-            System.out.println("La variable X" + (x + 1) + " es: " + matriz[x][var]);
+            matriz[i][n] = matriz[i][n] / matriz[i][i];
+            x[i] = matriz[i][n];
+            matriz[i][i] = 1;
+        }
+
+        cadena = cadena + this.reportarmatriz(matriz);
+        
+        if (matriz[n - 1][n - 1] == 0) 
+        {
+            System.out.println("No se puede seguir con el metodo ya que el coeficiente de la incognita Xn es 0");
+            cadena = cadena + "No se puede seguir con el metodo ya que el coeficiente de la incognita Xn es 0\n";
+            return cadena;
+        } 
+        else 
+        {
+            System.out.println("Calculando Xi");
+            cadena = cadena + "Valores de X\n";
+            x[n - 1] = matriz[n - 1][n];
+
+            System.out.println("X" + (n - 1) + " = " + this.redondear(matriz[n - 1][n]) + "\n");
+            cadena = cadena + "X" + (n) + " = " + this.redondear(x[n - 1]) + "\n";
+            
+            for (int i = (n - 2); i >= 0; i--) 
+            {
+                x[i] = matriz[i][n];
+
+                cadena = cadena + "X" + i + " = " + this.redondear(x[i]) + "\n" ;
+                //System.out.println("X" + i + "= (" + this.redondear(matriz[i][n]) + ") - [" + cadena_suma + "] / (" + this.redondear(matriz[i][i]) + ") = " + this.redondear(x[i]));
+            }
         }
         
-        return procedimiento;
+        return cadena;
     }
 }

@@ -1,7 +1,6 @@
 package Paneles;
 
 import Algoritmos.GaussJordan;
-import static Algoritmos.GaussJordan.muestramatriz;
 import Algoritmos.txtResultados;
 import static Paneles.Metodos.panelGrafico;
 import javax.swing.JScrollPane;
@@ -11,10 +10,10 @@ import javax.swing.table.DefaultTableModel;
 public class PanelGauss_Jordan extends javax.swing.JPanel 
 {
     GaussJordan gj = new GaussJordan();
-    float[][] matriz;
+    double[][] matriz;
     int n;
     int var, piv;
-    //JTextArea txtResultados = new JTextArea();
+    boolean vf;
     txtResultados txtR =  new txtResultados();
 
     public PanelGauss_Jordan() 
@@ -29,15 +28,6 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
         grupo_opciones.add(opt8);
         grupo_opciones.add(opt9);
         grupo_opciones.add(opt10);
-        
-        //panelGrafico.removeAll();
-        //txtResultados.setBounds(0, 0, 523, 400);
-        
-        //JScrollPane scroll = new JScrollPane(txtResultados, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        //txtResultados.
-        //panelGrafico.add(scroll);
-        //panelGrafico.revalidate();
-        //panelGrafico.repaint();
     }
     
     public void tabla(int n)
@@ -46,14 +36,6 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
         tabla.setRowCount(n);//renglones=filas
         tabla.setColumnCount(n+1);
         tblMatriz.setModel(tabla);
-        
-        /*for(int ii=0;ii<n;ii++)
-        {
-            for(int jj=0;jj<n+1;jj++)
-            {
-                tblMatriz.setValueAt(matriz[ii][jj],ii,jj);
-            }
-        }*/
     }
 
     /**
@@ -77,6 +59,7 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMatriz = new javax.swing.JTable();
         opt4 = new javax.swing.JRadioButton();
+        cbPivoteo = new javax.swing.JCheckBox();
 
         opt3.setText("3 x 3");
         opt3.addActionListener(new java.awt.event.ActionListener() {
@@ -159,6 +142,8 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
             }
         });
 
+        cbPivoteo.setText("¿Pivoteo Parcial?");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -176,9 +161,11 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
                         .addComponent(opt4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(opt3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
-                .addGap(7, 7, 7)
-                .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbPivoteo)
+                    .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -189,7 +176,10 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbPivoteo))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(opt3)
                                 .addGap(18, 18, 18)
@@ -215,15 +205,9 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
        n=3;
        piv = 0;
        var = n;
-       matriz = new float[n][n+1];
+       matriz = new double[n][n+1];
        
        tabla(n);
-       //muestramatriz(matriz(n,matriz), var);
-       
-       //panelGrafico.removeAll();
-       //panelGrafico.add(txtResultados);
-       //panelGrafico.revalidate();
-       //panelGrafico.repaint();
     }//GEN-LAST:event_opt3ActionPerformed
 
     private void opt7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt7ActionPerformed
@@ -283,10 +267,16 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
             }
         }
 
-        //txtResultados.setText(muestramatriz(matriz, var));
-        
+        if(cbPivoteo.isSelected())
+        {
+            vf = true;
+        }
+        else
+        {
+            vf = false;
+        }
         //txtResultados.setText(gj.solucion(matriz, piv, var));
-        txtR.txtResultados(gj.solucion(matriz, piv, var));
+        txtR.txtResultados(gj.evaluar(matriz, vf));
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void opt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt4ActionPerformed
@@ -300,6 +290,7 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcular;
+    private javax.swing.JCheckBox cbPivoteo;
     private javax.swing.ButtonGroup grupo_opciones;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton opt10;

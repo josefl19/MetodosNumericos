@@ -25,17 +25,20 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="opt3" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="opt9" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
-                  <Component id="opt4" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="opt5" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="opt6" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="opt7" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="opt8" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="opt10" min="-2" max="-2" attributes="0"/>
+                  <Component id="opt4" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="501" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="489" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnCalcular" min="-2" pref="93" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnCalcular" max="32767" attributes="0"/>
+                  <Component id="cbPivote" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -66,7 +69,11 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" alignment="0" min="-2" pref="321" max="-2" attributes="0"/>
-                          <Component id="btnCalcular" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btnCalcular" min="-2" pref="35" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="cbPivote" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -106,14 +113,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="opt9ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="opt4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="4 x 4"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="opt4ActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="opt5">
@@ -171,6 +170,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalcularActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="cbPivote">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xbf;Pivoteo Parcial?"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbPivoteActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="opt4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="4 x 4"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="opt4ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

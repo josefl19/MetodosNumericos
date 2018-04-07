@@ -1,14 +1,18 @@
 package Paneles;
 
 import Algoritmos.Gauss;
+import Algoritmos.txtResultados;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class PanelGauss extends javax.swing.JPanel 
 {
     Gauss g = new Gauss();
-    float [][] matriz = new float[11][11];
+    double [][] matriz;
     int n;
+    int var, piv;
+    boolean vf;
+    txtResultados txtR =  new txtResultados();
 
     public PanelGauss() {
         initComponents();
@@ -23,18 +27,12 @@ public class PanelGauss extends javax.swing.JPanel
         grupo_opciones.add(opt10);
     }
     
-    public void matriz(int n, float matriz[][])
+    public void tabla(int n)
     {  
-        DefaultTableModel model= (DefaultTableModel)tblMatriz.getModel();
-        model.setRowCount(n);//renglones=filas
-        model.setColumnCount(n+1);
-        for(int ii=0; ii<n; ii++)
-        {
-            for(int jj=0; jj<n+1; jj++)
-            {
-                tblMatriz.setValueAt(matriz[ii][jj],ii,jj);
-            }
-        }
+        DefaultTableModel tabla = (DefaultTableModel) tblMatriz.getModel();
+        tabla.setRowCount(n);//renglones=filas
+        tabla.setColumnCount(n+1);
+        tblMatriz.setModel(tabla);
     }
 
     /**
@@ -51,13 +49,14 @@ public class PanelGauss extends javax.swing.JPanel
         opt6 = new javax.swing.JRadioButton();
         opt10 = new javax.swing.JRadioButton();
         opt9 = new javax.swing.JRadioButton();
-        opt4 = new javax.swing.JRadioButton();
         opt5 = new javax.swing.JRadioButton();
         opt7 = new javax.swing.JRadioButton();
         opt8 = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMatriz = new javax.swing.JTable();
         btnCalcular = new javax.swing.JButton();
+        cbPivote = new javax.swing.JCheckBox();
+        opt4 = new javax.swing.JRadioButton();
 
         opt3.setText("3 x 3");
         opt3.addActionListener(new java.awt.event.ActionListener() {
@@ -84,13 +83,6 @@ public class PanelGauss extends javax.swing.JPanel
         opt9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 opt9ActionPerformed(evt);
-            }
-        });
-
-        opt4.setText("4 x 4");
-        opt4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opt4ActionPerformed(evt);
             }
         });
 
@@ -138,6 +130,20 @@ public class PanelGauss extends javax.swing.JPanel
             }
         });
 
+        cbPivote.setText("¿Pivoteo Parcial?");
+        cbPivote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbPivoteActionPerformed(evt);
+            }
+        });
+
+        opt4.setText("4 x 4");
+        opt4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opt4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,16 +153,18 @@ public class PanelGauss extends javax.swing.JPanel
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(opt3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(opt9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(opt4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(opt5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(opt6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(opt7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(opt8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(opt10))
+                    .addComponent(opt10)
+                    .addComponent(opt4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbPivote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -184,66 +192,121 @@ public class PanelGauss extends javax.swing.JPanel
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbPivote)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void opt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt3ActionPerformed
      n=3;
-        int var = 0, piv = 0;
-       matriz(n,matriz);
-        
+       piv = 0;
+       var = n;
+       matriz = new double[n][n+1];
+       
+       tabla(n);
     }//GEN-LAST:event_opt3ActionPerformed
-
-    private void opt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt4ActionPerformed
-        n=4;
-        int var = 0, piv = 0;
-       matriz(n,matriz);    }//GEN-LAST:event_opt4ActionPerformed
 
     private void opt7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt7ActionPerformed
        n=7;
-        int var = 0, piv = 0;
-       matriz(n,matriz);
+       piv = 0;
+       var = n;
+       matriz = new double[n][n+1];
+       
+       tabla(n);
     }//GEN-LAST:event_opt7ActionPerformed
 
     private void opt5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt5ActionPerformed
         n=5;
-        int var = 0, piv = 0;
-       matriz(n,matriz);
+       piv = 0;
+       var = n;
+       matriz = new double[n][n+1];
+       
+       tabla(n);
     }//GEN-LAST:event_opt5ActionPerformed
 
     private void opt6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt6ActionPerformed
         n=6;
-        int var = 0, piv = 0;
-       matriz(n,matriz);
+       piv = 0;
+       var = n;
+       matriz = new double[n][n+1];
+       
+       tabla(n);
     }//GEN-LAST:event_opt6ActionPerformed
 
     private void opt9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt9ActionPerformed
         n=9;
-        int var = 0, piv = 0;
-       matriz(n,matriz);
+       piv = 0;
+       var = n;
+       matriz = new double[n][n+1];
+       
+       tabla(n);
     }//GEN-LAST:event_opt9ActionPerformed
 
     private void opt10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt10ActionPerformed
        n=10;
-        int var = 0, piv = 0;
-       matriz(n,matriz);
+       piv = 0;
+       var = n;
+       matriz = new double[n][n+1];
+       
+       tabla(n);
     }//GEN-LAST:event_opt10ActionPerformed
 
     private void opt8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt8ActionPerformed
         n=8;
-        int var = 0, piv = 0;
-       matriz(n,matriz);
+       piv = 0;
+       var = n;
+       matriz = new double[n][n+1];
+       
+       tabla(n);
     }//GEN-LAST:event_opt8ActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
+        int filas = tblMatriz.getRowCount();
+        int columna = tblMatriz.getColumnCount();
         
+        for(int i = 0; i < filas; i++)
+        {
+            for(int j = 0; j < columna; j++)
+            {
+                String valor = tblMatriz.getValueAt(i, j).toString();
+                matriz[i][j] = Float.parseFloat(valor);
+            }
+        }
+
+        //txtResultados.setText(muestramatriz(matriz, var));
+        if(cbPivote.isSelected())
+        {
+            vf = true;
+        }
+        else
+        {
+            vf = false;
+        }
+        //txtResultados.setText(gj.solucion(matriz, piv, var));
+        txtR.txtResultados(g.evaluar(matriz, vf));
     }//GEN-LAST:event_btnCalcularActionPerformed
+
+    private void cbPivoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPivoteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbPivoteActionPerformed
+
+    private void opt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt4ActionPerformed
+        // TODO add your handling code here:
+        n=4;
+       piv = 0;
+       var = n;
+       matriz = new double[n][n+1];
+       
+       tabla(n);
+    }//GEN-LAST:event_opt4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcular;
+    private javax.swing.JCheckBox cbPivote;
     private javax.swing.ButtonGroup grupo_opciones;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton opt10;
