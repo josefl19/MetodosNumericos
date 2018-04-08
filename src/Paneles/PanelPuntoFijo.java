@@ -130,7 +130,17 @@ public class PanelPuntoFijo extends javax.swing.JPanel
         double x0 = Double.parseDouble(txtX0.getText());
                 
         DefaultTableModel tabla = (DefaultTableModel) tblResultados.getModel();
+        
+        for (int i = 0; i < tblResultados.getRowCount(); i++) 
+        {
+            tabla.removeRow(i);
+            i-=1;
+        }
+        
         Object[] fila = new Object[4];
+        
+        iteracion = 1;
+        error=1;
         
         do
         {

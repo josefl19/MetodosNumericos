@@ -33,7 +33,14 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
     public void tabla(int n)
     {  
         DefaultTableModel tabla = (DefaultTableModel) tblMatriz.getModel();
-        tabla.setRowCount(n);//renglones=filas
+        
+        for (int i = 0; i < tblMatriz.getRowCount(); i++) 
+        {
+            tabla.removeRow(i);
+            i-=1;
+        }
+        
+        tabla.setRowCount(n);
         tabla.setColumnCount(n+1);
         tblMatriz.setModel(tabla);
     }
@@ -60,6 +67,7 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
         tblMatriz = new javax.swing.JTable();
         opt4 = new javax.swing.JRadioButton();
         cbPivoteo = new javax.swing.JCheckBox();
+        lblGaussJordan = new javax.swing.JLabel();
 
         opt3.setText("3 x 3");
         opt3.addActionListener(new java.awt.event.ActionListener() {
@@ -144,6 +152,10 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
 
         cbPivoteo.setText("¿Pivoteo Parcial?");
 
+        lblGaussJordan.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblGaussJordan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblGaussJordan.setText("SOLUCIÓN POR GAUSS-JORDAN");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,53 +163,56 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(opt9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(opt5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(opt6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(opt7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(opt8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(opt10)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(opt4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(opt3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(opt9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(opt8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(opt7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(opt6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(opt5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(opt4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(opt3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(opt10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblGaussJordan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbPivoteo)
-                    .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
+                .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbPivoteo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblGaussJordan, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbPivoteo))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(opt3)
-                                .addGap(18, 18, 18)
-                                .addComponent(opt4)
-                                .addGap(18, 18, 18)
-                                .addComponent(opt5)
-                                .addGap(18, 18, 18)
-                                .addComponent(opt6)
-                                .addGap(18, 18, 18)
-                                .addComponent(opt7)
-                                .addGap(18, 18, 18)
-                                .addComponent(opt8)
-                                .addGap(18, 18, 18)
-                                .addComponent(opt9)
-                                .addGap(18, 18, 18)
-                                .addComponent(opt10)))
-                        .addGap(0, 21, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(opt3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(opt4)
+                        .addGap(18, 18, 18)
+                        .addComponent(opt5)
+                        .addGap(18, 18, 18)
+                        .addComponent(opt6)
+                        .addGap(18, 18, 18)
+                        .addComponent(opt7)
+                        .addGap(18, 18, 18)
+                        .addComponent(opt8)
+                        .addGap(18, 18, 18)
+                        .addComponent(opt9)
+                        .addGap(18, 18, 18)
+                        .addComponent(opt10))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -275,7 +290,7 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
         {
             vf = false;
         }
-        //txtResultados.setText(gj.solucion(matriz, piv, var));
+        
         txtR.txtResultados(gj.evaluar(matriz, vf));
     }//GEN-LAST:event_btnCalcularActionPerformed
 
@@ -293,6 +308,7 @@ public class PanelGauss_Jordan extends javax.swing.JPanel
     private javax.swing.JCheckBox cbPivoteo;
     private javax.swing.ButtonGroup grupo_opciones;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblGaussJordan;
     private javax.swing.JRadioButton opt10;
     private javax.swing.JRadioButton opt3;
     private javax.swing.JRadioButton opt4;

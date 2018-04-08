@@ -4,8 +4,7 @@ import org.apache.commons.math3.fraction.*;
 
 public class Gauss extends Base {
 
-    public Gauss() 
-    {
+    public Gauss() {
         this.espaciado = 0;
     }
 
@@ -20,14 +19,8 @@ public class Gauss extends Base {
         double cte = 0;
         double suma = 0;
 
-        System.out.println("--------------------------------------------------");
-        System.out.println("-----------------METODO DE GAUSS------------------");
-        System.out.println("--------------------------------------------------");
-        //cadena = cadena + "--------------------------------------------------\n";
-        cadena = cadena + "----------------- METODO DE GAUSS ------------------\n";
-        //cadena = cadena + "--------------------------------------------------\n";
-
-
+        cadena = cadena + "----------------- METODO DE GAUSS ------------------\n\n";
+        
         for (int i = 0; i < n - 1; i++)
         {
             if (pivoteo_parcial) 
@@ -35,57 +28,34 @@ public class Gauss extends Base {
                 matriz = this.pivoteoParcial(matriz, i);
             }
 
-            System.out.println("--------");
-            //cadena = cadena + "--------\n";
-            System.out.println("I=" + i);
-            cadena = cadena + "I = " + i + "\n";
-            System.out.println("--------");
-            //cadena = cadena + "--------\n";
-
             for (int j = i + 1; j < n; j++) 
             {
                 cte = matriz[j][i] / matriz[i][i];
-                System.out.println("alpha= " + this.redondear(matriz[j][i]) + " / " + this.redondear(matriz[i][i]) + " = " + this.redondear(cte));
-                cadena = cadena + "alpha= " + this.redondear(matriz[j][i]) + " / " + this.redondear(matriz[i][i]) + " = " + this.redondear(cte) + "\n\n";
-                System.out.println("");
-                //cadena = cadena + "\n";
+                cadena = cadena + "Escalar = " + this.redondear(matriz[j][i]) + " / " + this.redondear(matriz[i][i]) + " = " + this.redondear(cte) + "\n\n";
                 
                 for (int k = 0; k <= n; k++) 
                 {
                     matriz[j][k] = matriz[j][k] - matriz[i][k] * cte;
-                    System.out.print("A" + j + "" + k + "=A" + j + "" + k + "-alpha*A" + i + "" + k + " => ");
-                    cadena = cadena + "A" + j + "" + k + "=A" + j + "" + k + "-alpha*A" + i + "" + k + " => ";
-                    System.out.println(this.redondear(matriz[j][k]) + " = " + this.redondear(matriz[j][k]) + " - " + this.redondear(matriz[i][k]) + " * " + this.redondear(cte));
+                    cadena = cadena + "M[" + j + "][" + k + "] = M[" + j + "][" + k + "] - Escalar * M[" + i + "][" + k + "] => ";
                     cadena = cadena + this.redondear(matriz[j][k]) + " = " + this.redondear(matriz_original[j][k]) + " - " + this.redondear(matriz[i][k]) + " * " + this.redondear(cte) + "\n";
                 }
 
-                System.out.println("");
                 cadena = cadena + "\n";
             }
 
-            this.reportarmatriz(matriz);
             cadena = cadena + this.reportarmatriz(matriz);
-
-            System.out.println("--------------------------------------------------");
-            //cadena = cadena + "--------------------------------------------------\n";
-            System.out.println("");
-            //cadena = cadena + "\n";
-            //System.out.println("");
         }
 
         if (matriz[n - 1][n - 1] == 0) 
         {
-            System.out.println("No se puede seguir con el metodo ya que el coeficiente de la incognita Xn es 0");
             cadena = cadena + "No se puede seguir con el metodo ya que el coeficiente de la incognita Xn es 0\n";
             return cadena;
         } 
         else 
         {
-            System.out.println("Calculando Xi");
             cadena = cadena + "Calculando los valores de X\n";
             x[n - 1] = matriz[n - 1][n] / matriz[n - 1][n - 1];
-
-            System.out.println("X" + (n - 1) + "= (" + this.redondear(matriz[n - 1][n]) + ") / (" + this.redondear(matriz[n - 1][n - 1]) + ") =" + this.redondear(x[n - 1]));
+            
             cadena = cadena + "X" + (n - 1) + " = (" + this.redondear(matriz[n - 1][n]) + ") / (" + this.redondear(matriz[n - 1][n - 1]) + ") = " + this.redondear(x[n - 1]) + "\n";
 
             for (int i = (n - 2); i >= 0; i--) 
@@ -108,10 +78,46 @@ public class Gauss extends Base {
                 x[i] = (matriz[i][n] - suma) / matriz[i][i];
 
                 cadena = cadena + "X" + i + " = (" + this.redondear(matriz[i][n]) + ") - [" + cadena_suma + "] / (" + this.redondear(matriz[i][i]) + ") = " + this.redondear(x[i] + "\n");
-                System.out.println("X" + i + "= (" + this.redondear(matriz[i][n]) + ") - [" + cadena_suma + "] / (" + this.redondear(matriz[i][i]) + ") = " + this.redondear(x[i]));
             }
         }
+        return cadena;
+    }
+    
+    public String evaluarGauss(double[][] matriz, boolean pivoteo_parcial) 
+    {
+        String cadena="";
+        cadena = cadena + this.reportarmatriz(matriz);
 
+        int n = matriz.length;
+        double[] x = new double[n];
+        double[][] matriz_original = this.clonar(matriz);
+        double cte = 0;
+
+        cadena = cadena + "----------------- INICIANDO CON METODO DE GAUSS ------------------\n\n";
+        
+        for (int i = 0; i < n - 1; i++)
+        {
+            if (pivoteo_parcial) 
+            {
+                matriz = this.pivoteoParcial(matriz, i);
+            }
+
+            for (int j = i + 1; j < n; j++) 
+            {
+                cte = matriz[j][i] / matriz[i][i];
+                cadena = cadena + "Escalar = " + this.redondear(matriz[j][i]) + " / " + this.redondear(matriz[i][i]) + " = " + this.redondear(cte) + "\n\n";
+                
+                for (int k = 0; k <= n; k++) 
+                {
+                    matriz[j][k] = matriz[j][k] - matriz[i][k] * cte;
+                    cadena = cadena + "M[" + j + "][" + k + "] = M[" + j + "][" + k + "] - Escalar * M[" + i + "][" + k + "] ==> ";
+                    cadena = cadena + this.redondear(matriz[j][k]) + " = " + this.redondear(matriz_original[j][k]) + " - " + this.redondear(matriz[i][k]) + " * " + this.redondear(cte) + "\n";
+                }
+                cadena = cadena + "\n";
+            }
+
+            cadena = cadena + this.reportarmatriz(matriz);
+        }
         return cadena;
     }
     
@@ -121,7 +127,6 @@ public class Gauss extends Base {
         double[] x = new double[n];
         double[][] matriz_original = this.clonar(matriz);
         double cte = 0;
-        double suma = 0;
 
         for (int i = 0; i < n - 1; i++)
         {
