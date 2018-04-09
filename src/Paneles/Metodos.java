@@ -5,7 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Metodos extends javax.swing.JFrame 
-{ 
+{   
     public Metodos() 
     {
         initComponents();
@@ -58,6 +58,7 @@ public class Metodos extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Proyecto Métodos Numericos");
+        setResizable(false);
 
         panelPrincipal.setPreferredSize(new java.awt.Dimension(685, 293));
 
@@ -248,6 +249,10 @@ public class Metodos extends javax.swing.JFrame
         panelPrincipal.add(pg);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
+        
+        InstruccionesGauss ig = new InstruccionesGauss();
+        ig.setLocationRelativeTo(null);
+        ig.setVisible(true);
     }//GEN-LAST:event_jMenuGaussActionPerformed
 
     private void jMenuGaussJordanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGaussJordanActionPerformed
