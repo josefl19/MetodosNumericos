@@ -263,6 +263,10 @@ public class Metodos extends javax.swing.JFrame
         panelPrincipal.add(pgj);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
+        
+        InstruccionesGauss ig = new InstruccionesGauss();
+        ig.setLocationRelativeTo(null);
+        ig.setVisible(true);
     }//GEN-LAST:event_jMenuGaussJordanActionPerformed
 
     private void JMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuSalirActionPerformed
