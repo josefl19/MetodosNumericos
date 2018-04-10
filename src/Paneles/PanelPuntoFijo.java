@@ -62,7 +62,7 @@ public class PanelPuntoFijo extends javax.swing.JPanel
 
             },
             new String [] {
-                "No.", "X0", "X1", "f(x)"
+                "No.", "X0", "X1", "Error"
             }
         ) {
             Class[] types = new Class [] {

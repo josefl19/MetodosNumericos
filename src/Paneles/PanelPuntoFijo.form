@@ -141,7 +141,7 @@
                 <Column editable="false" title="No." type="java.lang.Integer"/>
                 <Column editable="false" title="X0" type="java.lang.String"/>
                 <Column editable="false" title="X1" type="java.lang.String"/>
-                <Column editable="false" title="f(x)" type="java.lang.String"/>
+                <Column editable="false" title="Error" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

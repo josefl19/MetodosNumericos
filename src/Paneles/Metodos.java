@@ -12,8 +12,8 @@ public class Metodos extends javax.swing.JFrame
         
         ImageIcon portada = new ImageIcon("src/imagenes/inicio1.jpeg");
         ImageIcon logo = new ImageIcon("src/imagenes/logo.jpeg");
-        JLabel port = new JLabel("");
-        JLabel icon = new JLabel("");
+        JLabel port = new JLabel(portada);
+        JLabel icon = new JLabel(logo);
         
         port.setIcon(portada);
         port.setSize(689,400);
@@ -21,7 +21,7 @@ public class Metodos extends javax.swing.JFrame
         port.setVisible(true);
         
         icon.setIcon(logo);
-        icon.setSize(689,400);
+        icon.setSize(523,400);
         icon.setLocation(0,0);
         icon.setVisible(true);
         
