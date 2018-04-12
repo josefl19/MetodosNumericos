@@ -54,6 +54,8 @@ public class Metodos extends javax.swing.JFrame
         jMenu6 = new javax.swing.JMenu();
         jMenuGauss = new javax.swing.JMenuItem();
         jMenuGaussJordan = new javax.swing.JMenuItem();
+        jMenuJacobi = new javax.swing.JMenuItem();
+        jMenuGaussSeidel = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -164,6 +166,22 @@ public class Metodos extends javax.swing.JFrame
         });
         jMenu6.add(jMenuGaussJordan);
 
+        jMenuJacobi.setText("Jacobi");
+        jMenuJacobi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuJacobiActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuJacobi);
+
+        jMenuGaussSeidel.setText("Gauss-Seidel");
+        jMenuGaussSeidel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuGaussSeidelActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuGaussSeidel);
+
         jMenu4.add(jMenu6);
 
         jMenuPrincipal.add(jMenu4);
@@ -271,7 +289,20 @@ public class Metodos extends javax.swing.JFrame
 
     private void JMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuSalirActionPerformed
         System.exit(0);
+        
     }//GEN-LAST:event_JMenuSalirActionPerformed
+
+    private void jMenuJacobiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuJacobiActionPerformed
+        Jacobi pj = new Jacobi();
+        pj.setVisible(true);
+        
+
+    }//GEN-LAST:event_jMenuJacobiActionPerformed
+
+    private void jMenuGaussSeidelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGaussSeidelActionPerformed
+        GaussSeidel gs = new GaussSeidel();
+        gs.setVisible(true);
+    }//GEN-LAST:event_jMenuGaussSeidelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,6 +351,8 @@ public class Metodos extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuBiseccion;
     private javax.swing.JMenuItem jMenuGauss;
     private javax.swing.JMenuItem jMenuGaussJordan;
+    private javax.swing.JMenuItem jMenuGaussSeidel;
+    private javax.swing.JMenuItem jMenuJacobi;
     private javax.swing.JMenuItem jMenuNewton;
     private javax.swing.JMenuBar jMenuPrincipal;
     private javax.swing.JMenuItem jMenuPuntoFijo;
