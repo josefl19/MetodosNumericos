@@ -300,8 +300,8 @@ public class Metodos extends javax.swing.JFrame
     }//GEN-LAST:event_jMenuJacobiActionPerformed
 
     private void jMenuGaussSeidelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGaussSeidelActionPerformed
-        GaussSeidel gs = new GaussSeidel();
-        gs.setVisible(true);
+        RegresionMinimosPanel rmcp= new RegresionMinimosPanel();
+        rmcp.setSize(691,355);
     }//GEN-LAST:event_jMenuGaussSeidelActionPerformed
 
     /**
