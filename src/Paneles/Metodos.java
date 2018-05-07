@@ -56,6 +56,7 @@ public class Metodos extends javax.swing.JFrame
         jMenuGaussJordan = new javax.swing.JMenuItem();
         jMenuJacobi = new javax.swing.JMenuItem();
         jMenuGaussSeidel = new javax.swing.JMenuItem();
+        jMenuRegresion = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -184,6 +185,14 @@ public class Metodos extends javax.swing.JFrame
 
         jMenu4.add(jMenu6);
 
+        jMenuRegresion.setText("Regresión Lineal");
+        jMenuRegresion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuRegresionActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuRegresion);
+
         jMenuPrincipal.add(jMenu4);
 
         jMenu5.setText("Unidad 4");
@@ -295,14 +304,25 @@ public class Metodos extends javax.swing.JFrame
     private void jMenuJacobiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuJacobiActionPerformed
         Jacobi pj = new Jacobi();
         pj.setVisible(true);
-        
-
     }//GEN-LAST:event_jMenuJacobiActionPerformed
 
     private void jMenuGaussSeidelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGaussSeidelActionPerformed
         RegresionMinimosPanel rmcp= new RegresionMinimosPanel();
         rmcp.setSize(691,355);
     }//GEN-LAST:event_jMenuGaussSeidelActionPerformed
+
+    private void jMenuRegresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRegresionActionPerformed
+        RegresionMinimosPanel rmcp= new RegresionMinimosPanel();
+        rmcp.setSize(691,355);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(rmcp);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+        
+        //InstruccionesGauss ig = new InstruccionesGauss();
+        //ig.setLocationRelativeTo(null);
+        //ig.setVisible(true);
+    }//GEN-LAST:event_jMenuRegresionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -357,6 +377,7 @@ public class Metodos extends javax.swing.JFrame
     private javax.swing.JMenuBar jMenuPrincipal;
     private javax.swing.JMenuItem jMenuPuntoFijo;
     private javax.swing.JMenuItem jMenuReglaFalsa;
+    private javax.swing.JMenuItem jMenuRegresion;
     private javax.swing.JMenuItem jMenuSecante;
     public static javax.swing.JPanel panelGrafico;
     private javax.swing.JPanel panelPrincipal;

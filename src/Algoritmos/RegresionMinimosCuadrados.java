@@ -1,6 +1,4 @@
-
 package Algoritmos;
-
 /**
  *
  * @author marianaortc
