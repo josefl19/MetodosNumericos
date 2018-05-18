@@ -1,5 +1,17 @@
 package Paneles;
 
+import Paneles.InstruccionesGauss;
+import Paneles.Jacobi;
+import Paneles.PanelBiseccion;
+import Paneles.PanelGauss;
+import Paneles.PanelGauss_Jordan;
+import Paneles.PanelInterpolacion;
+import Paneles.PanelNewton;
+import Paneles.PanelPuntoFijo;
+import Paneles.PanelReglaFalsa;
+import Paneles.PanelRegresionPolinomial;
+import Paneles.PanelSecante;
+import Paneles.RegresionMinimosPanel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -58,6 +70,8 @@ public class Metodos extends javax.swing.JFrame
         jMenuGaussSeidel = new javax.swing.JMenuItem();
         jMenuRegresion = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        jMenuInterpolacion = new javax.swing.JMenuItem();
+        jMenuRegresionPolinomial = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Proyecto Métodos Numericos");
@@ -196,6 +210,23 @@ public class Metodos extends javax.swing.JFrame
         jMenuPrincipal.add(jMenu4);
 
         jMenu5.setText("Unidad 4");
+
+        jMenuInterpolacion.setText("Interpolación");
+        jMenuInterpolacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuInterpolacionActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuInterpolacion);
+
+        jMenuRegresionPolinomial.setText("Regresión Polinomial");
+        jMenuRegresionPolinomial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuRegresionPolinomialActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuRegresionPolinomial);
+
         jMenuPrincipal.add(jMenu5);
 
         setJMenuBar(jMenuPrincipal);
@@ -324,6 +355,25 @@ public class Metodos extends javax.swing.JFrame
         //ig.setVisible(true);
     }//GEN-LAST:event_jMenuRegresionActionPerformed
 
+    private void jMenuInterpolacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuInterpolacionActionPerformed
+        PanelInterpolacion pi= new PanelInterpolacion();
+        pi.setSize(691,355);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(pi);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+    }//GEN-LAST:event_jMenuInterpolacionActionPerformed
+
+    private void jMenuRegresionPolinomialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRegresionPolinomialActionPerformed
+        // TODO add your handling code here:
+        PanelRegresionPolinomial prp= new PanelRegresionPolinomial();
+        prp.setSize(691,355);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(prp);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+    }//GEN-LAST:event_jMenuRegresionPolinomialActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -372,12 +422,14 @@ public class Metodos extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuGauss;
     private javax.swing.JMenuItem jMenuGaussJordan;
     private javax.swing.JMenuItem jMenuGaussSeidel;
+    private javax.swing.JMenuItem jMenuInterpolacion;
     private javax.swing.JMenuItem jMenuJacobi;
     private javax.swing.JMenuItem jMenuNewton;
     private javax.swing.JMenuBar jMenuPrincipal;
     private javax.swing.JMenuItem jMenuPuntoFijo;
     private javax.swing.JMenuItem jMenuReglaFalsa;
     private javax.swing.JMenuItem jMenuRegresion;
+    private javax.swing.JMenuItem jMenuRegresionPolinomial;
     private javax.swing.JMenuItem jMenuSecante;
     public static javax.swing.JPanel panelGrafico;
     private javax.swing.JPanel panelPrincipal;

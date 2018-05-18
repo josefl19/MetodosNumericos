@@ -6,6 +6,7 @@
 package Paneles;
 
 import Algoritmos.RegresionMinimosCuadrados;
+import Algoritmos.RegresionMultiple;
 import com.sun.istack.internal.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,11 +14,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author marianaortc
  */
-public class RegresionMinimosPanel extends javax.swing.JPanel {
+public class RegresionMultiplePanel extends javax.swing.JPanel {
 
-   RegresionMinimosCuadrados rmc= new RegresionMinimosCuadrados();
+   RegresionMultiple rm= new RegresionMultiple();
    double [][] matriz;
-    public RegresionMinimosPanel() {
+    public RegresionMultiplePanel() {
         initComponents();
     }
  public void tabla(int n)
@@ -84,7 +85,7 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "x", "y"
+                "x1", "x2", "y"
             }
         ));
         jScrollPane2.setViewportView(tblxy);
@@ -108,11 +109,11 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "x", "y", "xy", "x^2", "(ymed-yi)^2", "(ymed-a0-a1xi)"
+                "x1", "x2", "y", "x1*y", "x1^2", "x2^2", "x1*x2", "x2*y", "(ymed-yi)^2", "(ymed-a0-a1xi)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true, false, false
+                true, false, false, true, true, true, true, true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -120,6 +121,10 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane3.setViewportView(tblResultados);
+        if (tblResultados.getColumnModel().getColumnCount() > 0) {
+            tblResultados.getColumnModel().getColumn(8).setResizable(false);
+            tblResultados.getColumnModel().getColumn(9).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -135,14 +140,13 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnok)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCalcular)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(btnCalcular))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)))
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,7 +185,7 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
         
         for(int i = 0; i < fila; i++)
         {
-            for(int j = 0; j < 2; j++)
+            for(int j = 0; j < 3; j++)
             {
                 String valor = tblxy.getValueAt(i, j).toString();
                 matriz[i][j] = Float.parseFloat(valor);
@@ -189,7 +193,7 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
         }
         tablemat=new double[fila][7];
          
-        tablemat=rmc.table(matriz, fila,rmc.promediox(matriz, fila),rmc.promedioy(matriz, fila));
+        tablemat=rm.table(matriz, fila, rm.promedioy(matriz, fila));
         for(int e=0; e<fila+2;e++)
         {
             
@@ -213,7 +217,7 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
         }*/
     
        
-        rmc.coeficiente(fila);
+        rm.coeficiente(fila);
         tblResultados.setModel(tabla1);
         
     }//GEN-LAST:event_btnCalcularActionPerformed

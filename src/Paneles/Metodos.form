@@ -131,6 +131,24 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Unidad 4"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuInterpolacion">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Interpolaci&#xf3;n"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuInterpolacionActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuRegresionPolinomial">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Regresi&#xf3;n Polinomial"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuRegresionPolinomialActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
