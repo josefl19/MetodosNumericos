@@ -6,6 +6,7 @@
 package Algoritmos;
 
 import Algoritmos.Gauss;
+import static java.lang.System.in;
 
 /**
  *
@@ -51,6 +52,7 @@ public class RegresionPolinomial {
         tab[n+1][5]=tab[n+1][5]+tab[z][5];//xy
         tab[n+1][6]=tab[n+1][6]+tab[z][6];//x^my
         tab[n+1][7]=tab[n+1][4]+tab[z][7];//st
+        //FALTA SR POR LOS DATOS DE GAUSS
         }
         gauss=new double[3][4];
         
@@ -68,6 +70,7 @@ public class RegresionPolinomial {
         gauss[2][3]=tab[n+1][6];
          Gauss Gauss = new Gauss();
         String valores=Gauss.evaluar(gauss, false);
+
         int b=0;
        // do
           {
@@ -75,10 +78,7 @@ public class RegresionPolinomial {
             b++;
            }
         //while(b<n);
-        /*for(int q=0;q<n+1;q++)
-        {
-            tab[n+1][8]=tab[n+1][4]+tab[q][5];
-        }*/
+
         
          System.out.println(valores);
         return tab;
@@ -89,5 +89,6 @@ public class RegresionPolinomial {
         r=Math.pow(c,2);
         return r;
     }
+
     
 }

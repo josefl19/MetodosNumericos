@@ -7,6 +7,7 @@ package Paneles;
 
 import Algoritmos.RegresionMinimosCuadrados;
 import com.sun.istack.internal.logging.Logger;
+import java.text.DecimalFormat;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * @author marianaortc
  */
 public class RegresionMinimosPanel extends javax.swing.JPanel {
-
+    DecimalFormat df = new DecimalFormat("#.######");
    RegresionMinimosCuadrados rmc= new RegresionMinimosCuadrados();
    double [][] matriz;
     public RegresionMinimosPanel() {
@@ -193,13 +194,13 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
         for(int e=0; e<fila+2;e++)
         {
             
-                filaob[0]=tablemat[e][0];
-                filaob[1]=tablemat[e][1];
-                filaob[2]=tablemat[e][2];
-                filaob[3]=tablemat[e][3];
-                filaob[4]=tablemat[e][4];
-                filaob[5]=tablemat[e][5];
-                filaob[6]=tablemat[e][6];
+                filaob[0]=df.format(tablemat[e][0]);
+                filaob[1]=df.format(tablemat[e][1]);
+                filaob[2]=df.format(tablemat[e][2]);
+                filaob[3]=df.format(tablemat[e][3]);
+                filaob[4]=df.format(tablemat[e][4]);
+                filaob[5]=df.format(tablemat[e][5]);
+                filaob[6]=df.format(tablemat[e][6]);
             tabla1.addRow(filaob);
             
          }

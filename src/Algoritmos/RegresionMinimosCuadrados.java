@@ -20,7 +20,7 @@ public class RegresionMinimosCuadrados {
       public double promediox(double mat[][], int n)
     {
         for(int i=0; i<n;i++)
-            x=x+mat[i][1];
+            x=x+mat[i][0];
        
         promx=x/n;
         return promx;
@@ -60,7 +60,7 @@ public class RegresionMinimosCuadrados {
         while(b<n);
         for(int q=0;q<n+1;q++)
         {
-            tab[n+1][5]=tab[n+1][4]+tab[q][5];
+            tab[n+1][5]=tab[n+1][5]+tab[q][5];
         }
         return tab;
     }

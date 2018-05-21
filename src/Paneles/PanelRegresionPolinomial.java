@@ -8,6 +8,7 @@ package Paneles;
 import Algoritmos.RegresionMinimosCuadrados;
 import Algoritmos.RegresionPolinomial;
 import com.sun.istack.internal.logging.Logger;
+import java.text.DecimalFormat;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author marianaortc
  */
 public class PanelRegresionPolinomial extends javax.swing.JPanel {
-
+DecimalFormat df = new DecimalFormat("#.######");
    RegresionPolinomial rp= new RegresionPolinomial();
    double [][] matriz;
     public PanelRegresionPolinomial() {
@@ -183,7 +184,7 @@ public class PanelRegresionPolinomial extends javax.swing.JPanel {
        double[][] tablemat;
         int fila = tblxy.getRowCount();
         DefaultTableModel tabla1 = (DefaultTableModel) tblResultados.getModel();
-        Object [] filaob= new Object[7];
+        Object [] filaob= new Object[9];
         
         for (int i = 0; i < tblResultados.getRowCount(); i++) 
         {
@@ -200,19 +201,20 @@ public class PanelRegresionPolinomial extends javax.swing.JPanel {
                 matriz[i][j] = Float.parseFloat(valor);
             }
         }
-        tablemat=new double[fila][7];
+        tablemat=new double[fila][9];
          
         tablemat=rp.tabla(matriz, fila, grado, rp.promedioy(matriz, fila));
         for(int e=0; e<fila+2;e++)
         {
             
-                filaob[0]=tablemat[e][0];
-                filaob[1]=tablemat[e][1];
-                filaob[2]=tablemat[e][2];
-                filaob[3]=tablemat[e][3];
-                filaob[4]=tablemat[e][4];
-                filaob[5]=tablemat[e][5];
-                filaob[6]=tablemat[e][6];
+                filaob[0]=df.format(tablemat[e][0]);
+                filaob[1]=df.format(tablemat[e][1]);
+                filaob[2]=df.format(tablemat[e][2]);
+                filaob[3]=df.format(tablemat[e][3]);
+                filaob[4]=df.format(tablemat[e][4]);
+                filaob[5]=df.format(tablemat[e][5]);
+                filaob[6]=df.format(tablemat[e][6]);
+                filaob[7]=df.format(tablemat[e][7]);
             tabla1.addRow(filaob);
             
          }

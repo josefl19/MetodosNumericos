@@ -77,7 +77,7 @@ public class Gauss extends Base {
 
                 x[i] = (matriz[i][n] - suma) / matriz[i][i];
 
-                cadena = cadena + "X" + i + " = (" + this.redondear(matriz[i][n]) + ") - [" + cadena_suma + "] / (" + this.redondear(matriz[i][i]) + ") = " + this.redondear(x[i] + "\n");
+                cadena = cadena + "X" + i + " : (" + this.redondear(matriz[i][n]) + ") - [" + cadena_suma + "] / (" + this.redondear(matriz[i][i]) + ") = " + this.redondear(x[i] + "\n");
             }
         }
         return cadena;

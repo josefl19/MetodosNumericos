@@ -140,6 +140,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuInterpolacionActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuRMultiple">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Regresi&#xf3;n Multiple"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuRMultipleActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuRegresionPolinomial">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Regresi&#xf3;n Polinomial"/>

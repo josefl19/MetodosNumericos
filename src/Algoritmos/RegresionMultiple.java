@@ -20,7 +20,7 @@ public class RegresionMultiple {
     public double promedioy(double mat[][], int n)
     {
         for(int i=0; i<n;i++)
-            y=y+mat[i][1];
+            y=y+mat[i][2];
         
         promy=y/n;
         
@@ -40,8 +40,8 @@ public class RegresionMultiple {
                     tab[w][5]=mat[w][1]*mat[w][1];//x2^2
                     tab[w][6]=mat[w][1]*mat[w][0];//x1*x2
                     tab[w][7]=mat[w][1]*mat[w][2];//x2*y
-                    
-                    tab[w][5]=(mat[w][2]-promey)*(mat[w][2]-promey);
+                    tab[w][8]=(mat[w][2]-promey)*(mat[w][2]-promey);
+                    //FALTAN VALORES DE GAUSS PARA SR
                     w++;
                 }
         while(w<n);
@@ -82,14 +82,11 @@ public class RegresionMultiple {
         int b=0;
         do
           {
-            tab[b][5]=(mat[b][1]-a0-(a1*mat[b][0]))*(mat[b][1]-a0-(a1*mat[b][0]));
+            tab[b][9]=(mat[b][1]-a0-(a1*mat[b][0]))*(mat[b][1]-a0-(a1*mat[b][0]));
             b++;
            }
         while(b<n);
-        for(int q=0;q<n+1;q++)
-        {
-            tab[n+1][5]=tab[n+1][4]+tab[q][5];
-        }
+       
         return tab;
     }
     public double coeficiente(int n)

@@ -1,7 +1,7 @@
 package Paneles;
 
 import Paneles.InstruccionesGauss;
-import Paneles.Jacobi;
+import Paneles.PanelJacobi;
 import Paneles.PanelBiseccion;
 import Paneles.PanelGauss;
 import Paneles.PanelGauss_Jordan;
@@ -71,6 +71,7 @@ public class Metodos extends javax.swing.JFrame
         jMenuRegresion = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuInterpolacion = new javax.swing.JMenuItem();
+        jMenuRMultiple = new javax.swing.JMenuItem();
         jMenuRegresionPolinomial = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -219,6 +220,14 @@ public class Metodos extends javax.swing.JFrame
         });
         jMenu5.add(jMenuInterpolacion);
 
+        jMenuRMultiple.setText("Regresión Multiple");
+        jMenuRMultiple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuRMultipleActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuRMultiple);
+
         jMenuRegresionPolinomial.setText("Regresión Polinomial");
         jMenuRegresionPolinomial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -333,7 +342,7 @@ public class Metodos extends javax.swing.JFrame
     }//GEN-LAST:event_JMenuSalirActionPerformed
 
     private void jMenuJacobiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuJacobiActionPerformed
-        Jacobi pj = new Jacobi();
+        PanelJacobi pj = new PanelJacobi();
         pj.setVisible(true);
     }//GEN-LAST:event_jMenuJacobiActionPerformed
 
@@ -373,6 +382,15 @@ public class Metodos extends javax.swing.JFrame
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
     }//GEN-LAST:event_jMenuRegresionPolinomialActionPerformed
+
+    private void jMenuRMultipleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRMultipleActionPerformed
+        RegresionMultiplePanel rmp= new RegresionMultiplePanel();
+        rmp.setSize(691,355);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(rmp);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+    }//GEN-LAST:event_jMenuRMultipleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -427,6 +445,7 @@ public class Metodos extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuNewton;
     private javax.swing.JMenuBar jMenuPrincipal;
     private javax.swing.JMenuItem jMenuPuntoFijo;
+    private javax.swing.JMenuItem jMenuRMultiple;
     private javax.swing.JMenuItem jMenuReglaFalsa;
     private javax.swing.JMenuItem jMenuRegresion;
     private javax.swing.JMenuItem jMenuRegresionPolinomial;
