@@ -5,6 +5,7 @@
  */
 package Paneles;
 
+import Algoritmos.Jacobi;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,9 +13,16 @@ import javax.swing.table.DefaultTableModel;
  * @author marianaortc
  */
 public class PanelJacobi extends javax.swing.JFrame {
-    double [][] matriz;
-    int n;
+    double [][] mat;
+    Jacobi j= new Jacobi();
+    int max;
        int var;
+       static double []tot;
+   
+    static double [] mult;
+    static double [] error;
+    static double [] actual;
+   static double [] anterior;
     public PanelJacobi() {
         initComponents();
         
@@ -62,10 +70,12 @@ public void tablaRes(int n)
         tblEcua = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblResultados = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btncalcular = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtvariables = new javax.swing.JTextField();
         btnok = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtmax = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -83,17 +93,9 @@ public void tablaRes(int n)
 
             },
             new String [] {
-                "Ecuaciones despejadas"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-        });
+        ));
         jScrollPane1.setViewportView(tblEcua);
 
         tblResultados= new javax.swing.JTable(){
@@ -112,7 +114,12 @@ public void tablaRes(int n)
         ));
         jScrollPane2.setViewportView(tblResultados);
 
-        jButton1.setText("CALCULAR");
+        btncalcular.setText("CALCULAR");
+        btncalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncalcularActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Número de variables:");
 
@@ -122,6 +129,8 @@ public void tablaRes(int n)
                 btnokActionPerformed(evt);
             }
         });
+
+        jLabel2.setText("Número de interacciones máximo:");
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -140,20 +149,21 @@ public void tablaRes(int n)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(61, 61, 61))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btncalcular)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtvariables, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnok)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnok))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtmax, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
@@ -170,8 +180,12 @@ public void tablaRes(int n)
                             .addComponent(jLabel1)
                             .addComponent(txtvariables, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnok))
-                        .addGap(28, 28, 28)
-                        .addComponent(jButton1)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtmax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btncalcular)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -179,19 +193,47 @@ public void tablaRes(int n)
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnokActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel tabla = (DefaultTableModel) tblEcua.getModel();
-        
-        for (int i = 0; i < tblEcua.getRowCount(); i++) 
-        {
-            tabla.removeRow(i);
-            i-=1;
-        }
-        
-        tabla.setRowCount(Integer.parseInt(txtvariables.getText()));
-        
-        tblEcua.setModel(tabla);
+        int var=Integer.parseInt(txtvariables.getText());
+       mat = new double[var][var+1];
+       max=Integer.parseInt(txtmax.getText());
+       
+       
+       tabla(var);
     }//GEN-LAST:event_btnokActionPerformed
+
+    private void btncalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncalcularActionPerformed
+         int filas = tblEcua.getRowCount();
+        int columna = tblEcua.getColumnCount();
+       
+        mult=new double[filas];
+        error=new double[filas];
+        tot=new double[filas];
+        actual=new double[filas];
+        anterior=new double[filas];
+        
+        for(int i = 0; i < filas; i++)
+        {
+            for(int j = 0; j < columna; j++)
+            {
+                String valor = tblEcua.getValueAt(i, j).toString();
+                mat[i][j] = Float.parseFloat(valor);
+            }
+        }//RECUPERRA VALORES
+      
+        mat=j.ceros(mat,4,5);
+        System.out.println("-----");//ES LA PRIMER LINEA, LA QUE ES CON 0
+       
+        mult=j.mult(mat, mult, 5);
+         System.out.println("-----");// SEGUNDA LINEA CON VALORES DEL ANTERIOR
+        tot=j.table(mat,mult, 4, 5);
+         System.out.println("-----");// TERCER LINEA
+         for(int s=0;s<max-2;s++)
+         {
+        tot=j.table(mat, tot, 4, 5);
+        System.out.println("-----");//TODAS LAS DEMÁS
+         }
+        
+    }//GEN-LAST:event_btncalcularActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,10 +272,11 @@ public void tablaRes(int n)
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btncalcular;
     private javax.swing.JButton btnok;
     private javax.swing.ButtonGroup grupo_opciones;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -241,6 +284,7 @@ public void tablaRes(int n)
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblEcua;
     private javax.swing.JTable tblResultados;
+    private javax.swing.JTextField txtmax;
     private javax.swing.JTextField txtvariables;
     // End of variables declaration//GEN-END:variables
 }

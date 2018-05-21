@@ -80,10 +80,13 @@ public class Jacobi {
         for(int k=0;k<4;k++)
         {
             
-        System.out.println("con 0: "+mult[k]);
+        System.out.println("X"+(k+1)+": "+mult[k]);
+        }
+        for(int k=0;k<4;k++)
+        {
            
         error[k]=Math.abs((1-anterior[k]/actual[k])*100);
-        System.out.println("error: "+error[k]);
+        System.out.println("Ep"+(k+1)+": "+error[k]);
             
         }
         
@@ -107,13 +110,15 @@ public class Jacobi {
         tot=temp1;//TOT= LA X1,X2,X3,X4
         anterior=mult;//AQUI EMPIEZA EL ERROR
          actual=tot;
+         for(int e=0;e<4;e++)
+         {
+             System.out.println("X"+(e+1)+": "+tot[e]);
+         }
         for(int k=0;k<4;k++)
         {
-            
         
-            System.out.println("total---:"+tot[k]);
         error[k]=Math.abs((1-anterior[k]/actual[k])*100);
-        System.out.println("error: "+error[k]);
+        System.out.println("error"+(k+1)+": "+error[k]);
         
         }
        
@@ -121,6 +126,8 @@ public class Jacobi {
             
         return tot;
     }
+    
+
     
  /*   public void error(double [][] mat, double [] tot,double []mult, int ren, int col )
     {
