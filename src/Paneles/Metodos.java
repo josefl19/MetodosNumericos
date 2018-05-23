@@ -70,6 +70,7 @@ public class Metodos extends javax.swing.JFrame
         jMenuGaussSeidel = new javax.swing.JMenuItem();
         jMenuRegresion = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        jMenuInterpolacionCuad = new javax.swing.JMenuItem();
         jMenuInterpolacion = new javax.swing.JMenuItem();
         jMenuRMultiple = new javax.swing.JMenuItem();
         jMenuRegresionPolinomial = new javax.swing.JMenuItem();
@@ -211,6 +212,14 @@ public class Metodos extends javax.swing.JFrame
         jMenuPrincipal.add(jMenu4);
 
         jMenu5.setText("Unidad 4");
+
+        jMenuInterpolacionCuad.setText("Interpolacion Cuadratica");
+        jMenuInterpolacionCuad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuInterpolacionCuadActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuInterpolacionCuad);
 
         jMenuInterpolacion.setText("Interpolación");
         jMenuInterpolacion.addActionListener(new java.awt.event.ActionListener() {
@@ -392,6 +401,15 @@ public class Metodos extends javax.swing.JFrame
         panelPrincipal.repaint();
     }//GEN-LAST:event_jMenuRMultipleActionPerformed
 
+    private void jMenuInterpolacionCuadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuInterpolacionCuadActionPerformed
+        PanelInterpolacionCuadratica rmp= new PanelInterpolacionCuadratica();
+        rmp.setSize(691,355);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(rmp);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+    }//GEN-LAST:event_jMenuInterpolacionCuadActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -441,6 +459,7 @@ public class Metodos extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuGaussJordan;
     private javax.swing.JMenuItem jMenuGaussSeidel;
     private javax.swing.JMenuItem jMenuInterpolacion;
+    private javax.swing.JMenuItem jMenuInterpolacionCuad;
     private javax.swing.JMenuItem jMenuJacobi;
     private javax.swing.JMenuItem jMenuNewton;
     private javax.swing.JMenuBar jMenuPrincipal;

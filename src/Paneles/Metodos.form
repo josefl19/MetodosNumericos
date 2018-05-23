@@ -132,6 +132,14 @@
             <Property name="text" type="java.lang.String" value="Unidad 4"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuInterpolacionCuad">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Interpolacion Cuadratica"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuInterpolacionCuadActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuInterpolacion">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Interpolaci&#xf3;n"/>
