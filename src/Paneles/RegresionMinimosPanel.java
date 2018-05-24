@@ -49,6 +49,7 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
         btnok = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblResultados = new javax.swing.JTable();
+        labely = new javax.swing.JLabel();
 
         tblMatriz= new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int CellIndex)
@@ -122,6 +123,8 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tblResultados);
 
+        labely.setText("jLabel3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -137,6 +140,8 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
                         .addComponent(btnok)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCalcular)
+                        .addGap(28, 28, 28)
+                        .addComponent(labely)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
@@ -148,13 +153,19 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnok)
-                    .addComponent(btnCalcular))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnok)
+                            .addComponent(btnCalcular))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labely)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -214,8 +225,9 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
         }*/
     
        
-        rmc.coeficiente(fila);
+        //rmc.coeficiente(fila);
         tblResultados.setModel(tabla1);
+        labely.setText(rmc.coeficiente(fila));
         
     }//GEN-LAST:event_btnCalcularActionPerformed
 
@@ -235,6 +247,7 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel labely;
     private javax.swing.JTable tblMatriz;
     private javax.swing.JTable tblResultados;
     private javax.swing.JTable tblxy;

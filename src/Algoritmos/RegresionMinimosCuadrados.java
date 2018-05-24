@@ -65,11 +65,13 @@ public class RegresionMinimosCuadrados {
         return tab;
     }
     
-    public double coeficiente(int n)
+    public String coeficiente(int n)
     {
+        String res;
         double c=(tab[n+1][4]-tab[n+1][5])/tab[n+1][4];
         r=Math.pow(c,2);
-        return r;
+        res="Correlación: "+r;
+        return res;
     }
      
 }

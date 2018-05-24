@@ -60,21 +60,7 @@ public class RegresionMultiple {
         tab[n+1][9]=tab[n+1][9]+tab[z][9];//sr
         
         }
-        gauss=new double[3][4];
-        gauss[0][0]=n;
-        gauss[0][1]=tab[n+1][0];
-        gauss[0][2]=tab[n+1][1];
-        gauss[0][3]=tab[n+1][2];
-        gauss[1][0]=tab[n+1][0];
-        gauss[1][1]=tab[n+1][4];
-        gauss[1][2]=tab[n+1][6];
-        gauss[1][3]=tab[n+1][3];
-        gauss[2][0]=tab[n+1][1];
-        gauss[2][1]=tab[n+1][6];
-        gauss[2][2]=tab[n+1][5];
-        gauss[2][3]=tab[n+1][7];
-        Gauss Gauss = new Gauss();
-        String valores=Gauss.evaluar(gauss, true);
+        
         
         
         
@@ -89,11 +75,39 @@ public class RegresionMultiple {
        
         return tab;
     }
-    public double coeficiente(int n)
+    public String resultado(double[][] tab,int n)
     {
+        gauss=new double[3][4];
+        gauss[0][0]=n;
+        gauss[0][1]=tab[n+1][0];
+        gauss[0][2]=tab[n+1][1];
+        gauss[0][3]=tab[n+1][2];
+        gauss[1][0]=tab[n+1][0];
+        gauss[1][1]=tab[n+1][4];
+        gauss[1][2]=tab[n+1][6];
+        gauss[1][3]=tab[n+1][3];
+        gauss[2][0]=tab[n+1][1];
+        gauss[2][1]=tab[n+1][6];
+        gauss[2][2]=tab[n+1][5];
+        gauss[2][3]=tab[n+1][7];
+        GaussResultado Gauss = new GaussResultado();
+        String valores=Gauss.evaluar(gauss, false);
+        String [] ye=valores.split(",");
+        String y=""+ye[ye.length-2];
+        int cont=0;
+        for(int a=0;a<ye.length-2;a++)
+        { cont++;
+            y=y+"+"+ye[a]+"x"+cont;
+        }
+        y="y= "+y;
+        return y;
+    }
+    public String coeficiente(int n)
+    {   String resultado;
         double c=(tab[n+1][4]-tab[n+1][5])/tab[n+1][4];
         r=Math.pow(c,2);
-        return r;
+        resultado="Correlacion= "+r;
+        return resultado;
     }
     
 }

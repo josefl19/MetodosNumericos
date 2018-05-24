@@ -50,8 +50,8 @@ DecimalFormat df = new DecimalFormat("#.######");
         btnok = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblResultados = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        txtcorrelacion = new javax.swing.JTextField();
+        Labelye = new javax.swing.JTextField();
+        LabelCorrelacion = new javax.swing.JLabel();
 
         tblMatriz= new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int CellIndex)
@@ -129,12 +129,10 @@ DecimalFormat df = new DecimalFormat("#.######");
             tblResultados.getColumnModel().getColumn(9).setResizable(false);
         }
 
-        jLabel2.setText("Correlación:");
-
-        txtcorrelacion.setEditable(false);
-        txtcorrelacion.addActionListener(new java.awt.event.ActionListener() {
+        Labelye.setEditable(false);
+        Labelye.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcorrelacionActionPerformed(evt);
+                LabelyeActionPerformed(evt);
             }
         });
 
@@ -151,39 +149,47 @@ DecimalFormat df = new DecimalFormat("#.######");
                         .addComponent(txtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnok)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCalcular))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCalcular)
+                                .addGap(24, 24, 24)
+                                .addComponent(Labelye))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(LabelCorrelacion, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(209, 209, 209))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtcorrelacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)))
                 .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnok)
-                    .addComponent(btnCalcular))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtcorrelacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnok))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(10, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Labelye, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCalcular))
+                        .addGap(18, 18, 18)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(LabelCorrelacion, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(160, 160, 160))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -231,7 +237,8 @@ DecimalFormat df = new DecimalFormat("#.######");
             tabla1.addRow(filaob);
             
          }
-        
+         Labelye.setText(rm.resultado(tablemat, fila));
+         LabelCorrelacion.setText(rm.coeficiente(fila));
     /*for(int i = 0; i < fila+1; i++)
         {
             for(int j = 0; j < 6; j++)
@@ -254,23 +261,23 @@ DecimalFormat df = new DecimalFormat("#.######");
         matriz=new double[n][2];
     }//GEN-LAST:event_btnokActionPerformed
 
-    private void txtcorrelacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcorrelacionActionPerformed
+    private void LabelyeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LabelyeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtcorrelacionActionPerformed
+    }//GEN-LAST:event_LabelyeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LabelCorrelacion;
+    private javax.swing.JTextField Labelye;
     private javax.swing.JButton btnCalcular;
     private javax.swing.JButton btnok;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tblMatriz;
     private javax.swing.JTable tblResultados;
     private javax.swing.JTable tblxy;
-    private javax.swing.JTextField txtcorrelacion;
     private javax.swing.JTextField txtn;
     // End of variables declaration//GEN-END:variables
 }
