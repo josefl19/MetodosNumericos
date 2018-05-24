@@ -12,20 +12,20 @@ package Algoritmos;
 public class InterpolacionNewton {
     public static void main(String[] args) {
         InterpolacionNewton in=new InterpolacionNewton();
-        double []X=new double[5];
-        double [][]A=new double[5][5];
-        X[0]=4;
-        X[1]=-4;
-        X[2]=7;
-        X[3]=6;
-        X[4]=2;
-        double []F=new double[5];
-        F[0]=278;
-        F[1]=-242;
-        F[2]=1430;
-        F[3]=908;
-        F[4]=40;
-        in.Newton(X, F, 5, A);
+        double []X=new double[4];
+        double [][]A=new double[4][4];
+        X[0]=3;
+        X[1]=3.5;
+        X[2]=4.5;
+        X[3]=5;
+        
+        double []F=new double[4];
+        F[0]=0.477121;
+        F[1]=0.544068;
+        F[2]=0.653212;
+        F[3]=0.698970;
+        
+        in.Newton(X, F, 4, A);
         
     }
     public double Newton (double[] X, double[] F, double V,double [][]A){
