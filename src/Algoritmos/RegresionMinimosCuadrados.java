@@ -1,4 +1,7 @@
 package Algoritmos;
+
+import java.text.DecimalFormat;
+
 /**
  *
  * @author marianaortc
@@ -7,6 +10,8 @@ public class RegresionMinimosCuadrados {
     double [][] tab;
     double promy,promx;
     double y=0,x=0,a1,a0,r;
+    String a11,a00;
+    DecimalFormat df = new DecimalFormat("#.######");
     
     public double promedioy(double mat[][], int n)
     {
@@ -49,8 +54,10 @@ public class RegresionMinimosCuadrados {
         tab[n+1][3]=tab[n+1][3]+tab[z][3];
         tab[n+1][4]=tab[n+1][4]+tab[z][4];
         }
-        a1=((n*tab[n+1][2])-(tab[n+1][0]*tab[n+1][1]))/((7*tab[n+1][3])-((tab[n+1][0])*tab[n+1][0]));
+        a1=((n*tab[n+1][2])-(tab[n+1][0]*tab[n+1][1]))/((n*tab[n+1][3])-((tab[n+1][0])*tab[n+1][0]));
         a0=promey-(a1*promex);
+        
+        
         int b=0;
         do
           {
@@ -64,7 +71,14 @@ public class RegresionMinimosCuadrados {
         }
         return tab;
     }
-    
+    public String ye()
+    {
+        String y;
+        a11=df.format(a1);
+        a00=df.format(a0);
+        y="y= "+a00+"+"+a11+"x";
+        return y;
+    }
     public String coeficiente(int n)
     {
         String res;

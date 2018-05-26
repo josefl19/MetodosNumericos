@@ -16,6 +16,11 @@ public class RegresionPolinomial {
     double [][] tab,gauss;
     double promy;
     double y=0,x=0,a1,a0,r;
+    String valores="";
+    String ye1;
+    GaussResultado Gauss= new GaussResultado();
+    String [] ye;
+    double[]as;
      public double promedioy(double mat[][], int n)
     {
         for(int i=0; i<n;i++)
@@ -42,6 +47,7 @@ public class RegresionPolinomial {
                     w++;
                 }
         while(w<n);
+       
         for(int z=0;z<n+1;z++)
         {
         tab[n+1][0]=tab[n+1][0]+tab[z][0];//x
@@ -52,11 +58,10 @@ public class RegresionPolinomial {
         tab[n+1][5]=tab[n+1][5]+tab[z][5];//xy
         tab[n+1][6]=tab[n+1][6]+tab[z][6];//x^my
         tab[n+1][7]=tab[n+1][4]+tab[z][7];//st
-        //FALTA SR POR LOS DATOS DE GAUSS
+        
         }
         gauss=new double[3][4];
-        
-        gauss[0][0]=n;
+         gauss[0][0]=n;
         gauss[0][1]=tab[n+1][0];
         gauss[0][2]=tab[n+1][2];
         gauss[0][3]=tab[n+1][1];
@@ -68,27 +73,57 @@ public class RegresionPolinomial {
         gauss[2][1]=tab[n+1][3];
         gauss[2][2]=tab[n+1][4];
         gauss[2][3]=tab[n+1][6];
-         Gauss Gauss = new Gauss();
-        String valores=Gauss.evaluar(gauss, false);
-
-        int b=0;
+         
+        valores=Gauss.evaluar(gauss, false);
+         ye=valores.split(",");
+            int r=0;
+             as=new double [ye.length-1];
+            
+            for(int a=0;a<as.length;a++)
+            {
+                as[a]=Double.valueOf(ye[a]);
+                
+            }
+         do
+                {
+                  
+                    tab[r][8]=(tab[r][1]-(as[2])-as[1]*tab[r][0]-as[0]*tab[r][2])*(tab[r][1]-(as[2])-as[1]*tab[r][0]-as[0]*tab[r][2]);
+                    r++;
+                }
+        while(r<n);
+        //int b=0;
        // do
+       for(int b=0;b<n;b++)
           {
-            tab[b][8]=(mat[b][1]-a0-(a1*mat[b][0]))*(mat[b][1]-a0-(a1*mat[b][0]));
-            b++;
+            tab[n+1][8]=tab[n+1][8]+tab[b][8];//st
+            
            }
         //while(b<n);
 
         
-         System.out.println(valores);
+        
         return tab;
      }
-     public double coeficiente(int n)
+     
+     public String valores()
+     {
+         
+        
+         ye1=""+as[2];
+        int cont=0;
+         for(int a=0;a<as.length-1;a++)
+        { cont++;
+            ye1=ye1+"+"+ye[a]+"x^"+cont;
+        }
+         ye1="y= "+ye1;
+                 return ye1;
+     }
+     public String coeficiente(int n)
     {
-        double c=(tab[n+1][4]-tab[n+1][5])/tab[n+1][4];
+        String rr;
+        double c=(tab[n+1][7]-tab[n+1][8])/tab[n+1][7];
         r=Math.pow(c,2);
-        return r;
+        rr="Correlación: "+r;
+        return rr;
     }
-
-    
 }

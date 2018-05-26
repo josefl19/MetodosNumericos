@@ -18,6 +18,7 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
     DecimalFormat df = new DecimalFormat("#.######");
    RegresionMinimosCuadrados rmc= new RegresionMinimosCuadrados();
    double [][] matriz;
+   String y;
     public RegresionMinimosPanel() {
         initComponents();
     }
@@ -49,7 +50,8 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
         btnok = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblResultados = new javax.swing.JTable();
-        labely = new javax.swing.JLabel();
+        Labelcor = new javax.swing.JLabel();
+        Labely = new javax.swing.JLabel();
 
         tblMatriz= new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int CellIndex)
@@ -123,8 +125,6 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tblResultados);
 
-        labely.setText("jLabel3");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -140,8 +140,13 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
                         .addComponent(btnok)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCalcular)
-                        .addGap(28, 28, 28)
-                        .addComponent(labely)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(Labely, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(Labelcor, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
@@ -153,7 +158,7 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -161,15 +166,17 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
                             .addComponent(txtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnok)
                             .addComponent(btnCalcular))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labely)
-                        .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(131, 131, 131))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Labely, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(12, 12, 12)
+                        .addComponent(Labelcor, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(110, 110, 110))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -216,18 +223,10 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
             
          }
         
-    /*for(int i = 0; i < fila+1; i++)
-        {
-            for(int j = 0; j < 6; j++)
-            {
-                tblResultados.setValueAt(tablemat[i][j], fila, j);
-            }
-        }*/
-    
-       
-        //rmc.coeficiente(fila);
+        y=rmc.ye();
         tblResultados.setModel(tabla1);
-        labely.setText(rmc.coeficiente(fila));
+        Labely.setText(y);
+        Labelcor.setText(rmc.coeficiente(fila));
         
     }//GEN-LAST:event_btnCalcularActionPerformed
 
@@ -241,13 +240,14 @@ public class RegresionMinimosPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Labelcor;
+    private javax.swing.JLabel Labely;
     private javax.swing.JButton btnCalcular;
     private javax.swing.JButton btnok;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLabel labely;
     private javax.swing.JTable tblMatriz;
     private javax.swing.JTable tblResultados;
     private javax.swing.JTable tblxy;

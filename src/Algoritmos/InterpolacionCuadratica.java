@@ -46,14 +46,27 @@ public class InterpolacionCuadratica {
     }
 
     
-    public void fin(double [] b, double [] fun)
+    public String fin(double [] b, double[] fun, double x0, double x1, double x2,double num,String funcion) throws Exception
     {
+        String fin;
+        exp = new Expresion(funcion);
+        double fx1,fx2,fx0;
+         fx0=exp.evaluar(x0);
+        fx1=exp.evaluar(x1);
+        fx2=exp.evaluar(x2);
+       fin= "f(x)=b0+b1("+num+"-"+x0+")+b2("+num+"-"+x0+")*("+num+"-"+x1+")";
+       fin=fin+"\nb0="+fx0;
+       fin=fin+"\nb1=("+fx1+"-"+fx0+")/("+x1+"-"+x0+")";
+       fin=fin+"\nb2=((("+fx2+"-"+fx1+")/("+x2+"-"+x1+"))-(("+fx1+"-"+fx0+")/("+x1+"-"+x0+")))/("+x2+"-"+x0+")";
+       
         for(int a=0;a<3;a++)
         {
             fun[a]=fun[a]*b[a];
             func=func+fun[a];
             
         }
-        System.out.println("función= "+func);
+        fin=fin+"\n\nfunción= "+func;
+        System.out.println();
+        return fin;
     }
 }

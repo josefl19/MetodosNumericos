@@ -6,6 +6,7 @@
 package Paneles;
 
 import Algoritmos.Interpolacion;
+import Algoritmos.txtResultados;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,6 +18,8 @@ public class PanelInterpolacion extends javax.swing.JPanel {
 
     String funcion;
     double x0,x1,valor;
+    String s,er;
+    txtResultados txtR =  new txtResultados();
     public PanelInterpolacion() {
         initComponents();
     }
@@ -159,11 +162,15 @@ public class PanelInterpolacion extends javax.swing.JPanel {
         x1=Double.parseDouble(txtX1.getText());
         valor=Double.parseDouble(txtValor.getText());
         try {
-            i.evaluar(funcion, x0, x1, valor);
-            i.error(funcion, valor);
+          s= i.evaluar(funcion, x0, x1, valor);
+             er=i.error(funcion, valor);
+             s=s+er;
+             txtR.txtResultados(s);
         } catch (Exception ex) {
             Logger.getLogger(PanelInterpolacion.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
+        
         
     }//GEN-LAST:event_btnCalcularActionPerformed
 

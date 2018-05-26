@@ -7,6 +7,7 @@ package Paneles;
 
 import Algoritmos.Interpolacion;
 import Algoritmos.InterpolacionCuadratica;
+import Algoritmos.txtResultados;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,7 +18,9 @@ import java.util.logging.Logger;
 public class PanelInterpolacionCuadratica extends javax.swing.JPanel {
 
     String funcion;
+    txtResultados txtR =  new txtResultados();
     double x0,x1,x2,valor;
+    String s;
     public PanelInterpolacionCuadratica() {
         initComponents();
     }
@@ -186,7 +189,8 @@ public class PanelInterpolacionCuadratica extends javax.swing.JPanel {
             b=ic.funcion(fun, x0, x1, x2);
            
           
-            ic.fin(b, fun);
+            s=ic.fin(b, fun, x0, x1, x2, valor, funcion);
+             txtR.txtResultados(s);
             
         } catch (Exception ex) {
             Logger.getLogger(PanelInterpolacionCuadratica.class.getName()).log(Level.SEVERE, null, ex);

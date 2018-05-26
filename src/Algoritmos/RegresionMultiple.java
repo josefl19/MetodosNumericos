@@ -16,6 +16,10 @@ public class RegresionMultiple {
     double [][] tab,gauss;
     double promy;
     double y=0,x=0,a1,a0,r;
+    String valores;
+    String [] ye;
+    double [] as;
+     GaussResultado Gauss = new GaussResultado();
     
     public double promedioy(double mat[][], int n)
     {
@@ -57,26 +61,9 @@ public class RegresionMultiple {
         tab[n+1][6]=tab[n+1][6]+tab[z][6];//x2*x
         tab[n+1][7]=tab[n+1][7]+tab[z][7];//x2*y
         tab[n+1][8]=tab[n+1][8]+tab[z][8];//st
-        tab[n+1][9]=tab[n+1][9]+tab[z][9];//sr
+        //tab[n+1][9]=tab[n+1][9]+tab[z][9];//sr
         
         }
-        
-        
-        
-        
-        
-        int b=0;
-        do
-          {
-            tab[b][9]=(mat[b][1]-a0-(a1*mat[b][0]))*(mat[b][1]-a0-(a1*mat[b][0]));
-            b++;
-           }
-        while(b<n);
-       
-        return tab;
-    }
-    public String resultado(double[][] tab,int n)
-    {
         gauss=new double[3][4];
         gauss[0][0]=n;
         gauss[0][1]=tab[n+1][0];
@@ -90,9 +77,38 @@ public class RegresionMultiple {
         gauss[2][1]=tab[n+1][6];
         gauss[2][2]=tab[n+1][5];
         gauss[2][3]=tab[n+1][7];
-        GaussResultado Gauss = new GaussResultado();
-        String valores=Gauss.evaluar(gauss, false);
-        String [] ye=valores.split(",");
+        valores=Gauss.evaluar(gauss, false);
+         ye=valores.split(",");
+        as=new double [ye.length-1];
+            
+            for(int a=0;a<as.length;a++)
+            {
+                as[a]=Double.valueOf(ye[a]);
+                
+            }
+
+        int b=0;
+        int r=0;
+ 
+         do
+                {
+                  
+                    tab[r][9]=(tab[r][2]-(as[2])-as[1]*tab[r][0]-as[0]*tab[r][1])*(tab[r][2]-(as[2])-as[1]*tab[r][0]-as[0]*tab[r][1]);
+                    r++;
+                }
+        while(r<n);
+        for(int x=0;b<n+1;b++)
+          {
+            tab[n+1][9]=tab[n+1][9]+tab[x][9];//st
+            
+           }
+        return tab;
+    }
+    public String resultado(double[][] tab,int n)
+    {
+        
+         
+        
         String y=""+ye[ye.length-2];
         int cont=0;
         for(int a=0;a<ye.length-2;a++)
@@ -104,7 +120,7 @@ public class RegresionMultiple {
     }
     public String coeficiente(int n)
     {   String resultado;
-        double c=(tab[n+1][4]-tab[n+1][5])/tab[n+1][4];
+        double c=(tab[n+1][8]-tab[n+1][9])/tab[n+1][8];
         r=Math.pow(c,2);
         resultado="Correlacion= "+r;
         return resultado;
