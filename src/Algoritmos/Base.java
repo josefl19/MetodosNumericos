@@ -230,4 +230,27 @@ public class Base
         
         return cadena;
     }
+    
+    /**
+     * inicializa un vector con 0
+     * @param n el vector a inicializar
+     * @return vector inicalizado
+     */
+    public double[] inicializar(double[] n) {
+        return this.inicializar(n, 0);
+    }
+
+    /**
+     * inicializa un vector con un numero definido
+     * @param n el vector a inicializar
+     * @param defecto numero para inicializar
+     * @return vector inicalizado
+     */
+    public double[] inicializar(double[] n, double defecto) {
+
+        for (int i = 0; i < n.length; i++) {
+            n[i] = defecto;
+        }
+        return n;
+    }
 }

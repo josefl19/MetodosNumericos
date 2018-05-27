@@ -1,24 +1,23 @@
 package Paneles;
 
-import Algoritmos.Gauss;
-import Algoritmos.Jacobi;
+import Algoritmos.GaussSeidel;
 import Algoritmos.txtResultados;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class PanelJacobi extends javax.swing.JPanel 
+public class PanelGauss_Seidel extends javax.swing.JPanel 
 {
-    Jacobi j = new Jacobi();
-    double [][] matriz;
+    GaussSeidel gs = new GaussSeidel();
     double error = 0.001;
+    double [][] matriz;
     int n, limite = 100;
     int var, piv;
     boolean vf;
     txtResultados txtR =  new txtResultados();
     JOptionPane info = new JOptionPane();
 
-    public PanelJacobi() {
+    public PanelGauss_Seidel() {
         initComponents();
         
         grupo_opciones.add(opt3);
@@ -61,7 +60,6 @@ public class PanelJacobi extends javax.swing.JPanel
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMatriz = new javax.swing.JTable();
         btnCalcular = new javax.swing.JButton();
-        cbPivote = new javax.swing.JCheckBox();
         opt4 = new javax.swing.JRadioButton();
         lblGauss = new javax.swing.JLabel();
 
@@ -137,13 +135,6 @@ public class PanelJacobi extends javax.swing.JPanel
             }
         });
 
-        cbPivote.setText("¿Pivoteo Parcial?");
-        cbPivote.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbPivoteActionPerformed(evt);
-            }
-        });
-
         opt4.setText("4 x 4");
         opt4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,7 +144,7 @@ public class PanelJacobi extends javax.swing.JPanel
 
         lblGauss.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblGauss.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblGauss.setText("SOLUCIÓN POR JACOBI");
+        lblGauss.setText("SOLUCIÓN POR GAUSS-SEIDEL");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -175,9 +166,7 @@ public class PanelJacobi extends javax.swing.JPanel
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
                     .addComponent(lblGauss, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbPivote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -204,10 +193,7 @@ public class PanelJacobi extends javax.swing.JPanel
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbPivote))
+                            .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblGauss, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -292,26 +278,12 @@ public class PanelJacobi extends javax.swing.JPanel
             }
         }
 
-        if(cbPivote.isSelected())
-        {
-            vf = true;
-        }
-        else
-        {
-            vf = false;
-        }
-
-        txtR.txtResultados(j.resultado(matriz, error, limite));
+        txtR.txtResultados(gs.evaluar(matriz, error, limite));
     }//GEN-LAST:event_btnCalcularActionPerformed
-
-    private void cbPivoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPivoteActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_cbPivoteActionPerformed
 
     private void opt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opt4ActionPerformed
         // TODO add your handling code here:
-        n=4;
+       n=4;
        piv = 0;
        var = n;
        matriz = new double[n][n+1];
@@ -322,7 +294,6 @@ public class PanelJacobi extends javax.swing.JPanel
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcular;
-    private javax.swing.JCheckBox cbPivote;
     private javax.swing.ButtonGroup grupo_opciones;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblGauss;

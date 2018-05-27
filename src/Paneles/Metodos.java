@@ -352,12 +352,28 @@ public class Metodos extends javax.swing.JFrame
 
     private void jMenuJacobiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuJacobiActionPerformed
         PanelJacobi pj = new PanelJacobi();
-        pj.setVisible(true);
+        pj.setSize(691,355);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(pj);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+        
+        InstruccionesGauss ig = new InstruccionesGauss();
+        ig.setLocationRelativeTo(null);
+        ig.setVisible(true);
     }//GEN-LAST:event_jMenuJacobiActionPerformed
 
     private void jMenuGaussSeidelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGaussSeidelActionPerformed
-        RegresionMinimosPanel rmcp= new RegresionMinimosPanel();
-        rmcp.setSize(691,355);
+        PanelGauss_Seidel pgs = new PanelGauss_Seidel();
+        pgs.setSize(691,355);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(pgs);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+        
+        InstruccionesGauss ig = new InstruccionesGauss();
+        ig.setLocationRelativeTo(null);
+        ig.setVisible(true);
     }//GEN-LAST:event_jMenuGaussSeidelActionPerformed
 
     private void jMenuRegresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuRegresionActionPerformed
@@ -367,10 +383,6 @@ public class Metodos extends javax.swing.JFrame
         panelPrincipal.add(rmcp);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
-        
-        //InstruccionesGauss ig = new InstruccionesGauss();
-        //ig.setLocationRelativeTo(null);
-        //ig.setVisible(true);
     }//GEN-LAST:event_jMenuRegresionActionPerformed
 
     private void jMenuInterpolacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuInterpolacionActionPerformed

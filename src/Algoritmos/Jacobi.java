@@ -1,194 +1,112 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Algoritmos;
 
-/**
- *
- * @author marianaortc
- */
-public class Jacobi {
-    public static void main(String[] args) {
-        Jacobi j= new Jacobi();
-        j.llenar();
-        j.ceros(mat,4,5);
-        System.out.println("-----");
-        j.mult(mat, mult, 5);
-         System.out.println("-----");
-        j.table(mat,mult, 4, 5);
-         System.out.println("-----");
-         for(int s=0;s<12;s++)
-         {
-        j.table(mat, tot, 4, 5);
-        System.out.println("-----");}
-         
-        //j.table(mat, tot, 4, 5);
-       //j.error(mat, tot, mult, 4, 5);
-
-
-
-        
-    }
-    static double []tot=new double [4];
-    // static double []fin=new double [4];
-    static double [][] mat=new double[4][5];
-    static double mult[]=new double [4];
-    static double error[]=new double [4];
-    static double [] actual=new double [4];
-   static double [] anterior=new double [4];
-  
-    public double[][] llenar(){
-    mat[0][0]=6;    mat[0][1]=-1;   mat[0][2]=-1;  mat[0][3]=4;    mat[0][4]=17;
-    mat[1][0]=1;    mat[1][1]=-10;  mat[1][2]=2;   mat[1][3]=-1;   mat[1][4]=-17;
-    mat[2][0]=3;    mat[2][1]=-2;   mat[2][2]=8;   mat[2][3]=-1;   mat[2][4]=19;
-    mat[3][0]=1;    mat[3][1]=1;    mat[3][2]=1;   mat[3][3]=-5;   mat[3][4]=-14;
-    return mat;
-    }
-    
-    /*0      -1/6     -1/6     2/3     17/6
-    -1/10   0        -2/5     -1/10   -17/10
-    3/8     -1/4     0         -1/8    19/8
-    -1/5    -1/5       -1/5     0       14/5*/
-    public double[][] ceros(double[][] mat,int ren,int col)
+public class Jacobi extends GaussSeidel
+{
+    public String resultado(double[][] matriz, double error, int limite) 
     {
-        for(int i=0;i<ren;i++)
+        String cadena = "";
+        cadena = cadena + "Error: " + error + "\n";
+        System.out.println("e: " + error);
+        System.out.println();
+
+        boolean ok = false;
+        double[][] matriz_original = this.clonar(matriz);
+        int n = matriz.length;
+
+        double[] Xa = new double[n];
+        double[] Xp = new double[n];
+        double[] Xt = new double[n];
+        Xp = this.inicializar(Xp);
+        Xa = this.inicializar(Xa);
+        Xt = this.inicializar(Xt);
+        
+        cadena = cadena + "-----------------METODO DE GAUSS-JACOBI-----------\n";
+        cadena = cadena + "\nMATRIZ INICIAL:\n";
+
+        System.out.println("--------------------------------------------------");
+        System.out.println("-----------------METODO DE GAUSS-JACOBI-----------");
+        System.out.println("--------------------------------------------------");
+
+        //	this.criterioConvergencia(matriz);
+        cadena = cadena + this.reportarmatriz(matriz);
+        this.reportarmatriz(matriz);
+        for (int k = 0; k < limite; k++) 
         {
-            double temp1=mat[i][i];
-            for(int j=0;j<col;j++)
-            {
-                mat[i][j]=mat[i][j]/temp1;
-               
+            cadena = cadena + "Iteracion = " + (k+1) + "\n";
+
+            for (int i = 0; i < n; i++) {
+
+
+                double s = 0;
+                for (int j = 0; j < n; j++) {
+                    if (i != j) {
+                        s = s + matriz[i][j] * Xa[j];
+                    }
+                }
+
+                cadena = cadena + "X" + (i+1) + "N " + "= M[" + i + "][" + n + "] - s) / A[" + i + "][" + i + "] = (" + this.redondear(matriz[i][n]) + " - " + this.redondear(s) + ") / " + this.redondear(matriz[i][i]) + " = " + this.redondear(((matriz[i][n] - s) / matriz[i][i]), 6) + "\n";
+                
+                //cadena = cadena + "Xt" + i + "=(M" + i + "" + n + "-s)/A" + i + "" + i + " = (" + this.redondear(matriz[i][n]) + "-" + this.redondear(s) + ")/" + this.redondear(matriz[i][i]) + "=" + this.redondear((matriz[i][n] - s) / matriz[i][i]) + "\n";
+                System.out.println("Xt" + i + "=(M" + i + "" + n + "-s)/A" + i + "" + i + " = (" + this.redondear(matriz[i][n]) + "-" + this.redondear(s) + ")/" + this.redondear(matriz[i][i]) + "=" + this.redondear((matriz[i][n] - s) / matriz[i][i]));
+                Xt[i] = (matriz[i][n] - s) / matriz[i][i];
+
             }
-            mat[i][i]=0;
-            for(int e=0;e<ren;e++)
-            {
-                mat[i][e]=mat[i][e]*-1;
-            }
-        }
-        return mat;
-    }
-    public double [] mult(double [][] mat,double [] mult,int col)
-    {
-        for(int i=0;i<4;i++)
-        {
-            mult[i]=mat[i][col-1];
-            
-            
-        }
-        for(int k=0;k<4;k++)
-        {
-            
-        System.out.println("X"+(k+1)+": "+mult[k]);
-        }
-        for(int k=0;k<4;k++)
-        {
-           
-        error[k]=Math.abs((1-anterior[k]/actual[k])*100);
-        System.out.println("Ep"+(k+1)+": "+error[k]);
-            
-        }
-        
-        return mult;
-    }
-    
-    public double[] table(double[][]mat, double []mult, int ren, int col)
-    {
-        double temp;
-        double [] temp1=new double [ren];
-        for(int i=0;i<ren;i++)
-        {
-            for(int j=0;j<col-1;j++)
-            {
-                temp=mat[i][j]*mult[j];
-                temp1[i]=temp1[i]+temp;
-            }
-            temp1[i]=temp1[i]+mat[i][col-1];
-            
-        }
-        tot=temp1;//TOT= LA X1,X2,X3,X4
-        anterior=mult;//AQUI EMPIEZA EL ERROR
-         actual=tot;
-         for(int e=0;e<4;e++)
-         {
-             System.out.println("X"+(e+1)+": "+tot[e]);
-         }
-        for(int k=0;k<4;k++)
-        {
-        
-        error[k]=Math.abs((1-anterior[k]/actual[k])*100);
-        System.out.println("error"+(k+1)+": "+error[k]);
-        
-        }
-       
-       
-            
-        return tot;
-    }
-    
 
-    
- /*   public void error(double [][] mat, double [] tot,double []mult, int ren, int col )
-    {
-        int j=1;
-        error=new double[ren];
-        
-        actual=mult(mat,mult,col);
-        for(int k=0;k<ren;k++)
-        {
-       error[k]=Math.abs((1-anterior[k]/actual[k])*100);
-       
-       System.out.println("err0: "+error[k]);
-        }
-        System.out.println("---------");
-       anterior=actual;
-        actual=table(mat,mult,ren,col);
-         
-        for(int k=0;k<ren;k++)
-        {
-        error[k]=Math.abs((1-anterior[k]/actual[k])*100);
-        System.out.println("err1: "+error[k]);
-        }
-        System.out.println("---------1");
-       anterior=actual;
-        actual=table(mat,mult,ren,col);
-         
-        for(int k=0;k<ren;k++)
-        {
-        error[k]=Math.abs((1-anterior[k]/actual[k])*100);
-        System.out.println("err1: "+error[k]);
-        }
-        /*for(int c=0;c<ren;c++)
-        {
-             anterior=actual;
-        actual=table(mat,tot,ren,col);
-        for(int k=0;k<4;k++)
-        {
-           
-        error[k]=Math.abs((1-anterior[k]/actual[k])*100);
-        System.out.println("error "+"2: "+error[k]);
-        }
-        }
-        */
-       /* do
-        {
-            
-            anterior=actual;
-        actual=table(mat,mult,ren,col);
-        error[j]=Math.abs((1-anterior[j]/actual[j])*100);
-        System.out.println("err: "+error[j]);
-        j++;
-        }
-        while(error[j]>0.001);*/
-               
-        
-    //}
-    
-    
-    
+            Xa = this.actualizarX(Xt, Xa);
+            System.out.println("");
 
+            System.out.print("Resultados Xa:");
+            System.out.print("[");
+            cadena = cadena + "\n\t      1                2              3             4";
+            cadena = cadena + "\nResultados XN: [";
+            for (int i = 0; i < n; i++) {
+                cadena = cadena + this.redondear(Xa[i], 8, true) + (i < (n - 1) ? ", " : "");
+                System.out.print(this.redondear(Xa[i], this.decimales + 4, false) + (i < (n - 1) ? ", " : ""));
+            }
+            System.out.println("]");
+            cadena = cadena + "]\n";
+
+            cadena = cadena + "Resultados Xi: [";
+            System.out.print("Resultados Xp:");
+            System.out.print("[");
+            for (int i = 0; i < n; i++) {
+                cadena = cadena + this.redondear(Xp[i], 8, true) + (i < (n - 1) ? ", " : "");
+                System.out.print(this.redondear(Xp[i], this.decimales + 4, false) + (i < (n - 1) ? ", " : ""));
+            }
+            System.out.println("]");
+            cadena = cadena + "]\n";
+
+            //	if(k>0){
+
+            ok = verificarTolerancia(Xa, Xp, error);
+            cadena = cadena + verificar(Xa, Xp, error) + "\n";
+
+            if (ok) {
+                break;
+            }
+
+
+            Xp = this.actualizarX(Xa, Xp);
+
+            cadena = cadena + "\n-----------------------------------\n\n";
+            System.out.println("");
+            System.out.println("-----------------------------------");
+            System.out.println("");
+
+            //	}
+
+        }
+        
+        if (!ok) {
+            cadena = cadena + "No se Encontro la Solucion";
+            System.out.println("No se Encontro la Solucion");
+        } else {
+
+            this.comprobar(Xa, matriz_original);
+            cadena = cadena + this.resultados(Xa, matriz_original);
+        }
+
+
+        return cadena;
+    }
 }
-    
-    
- 

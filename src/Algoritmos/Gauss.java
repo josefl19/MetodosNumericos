@@ -182,4 +182,39 @@ public class Gauss extends Base {
         
         return matriz;
     }
+    
+    public void comprobar(double[] x, double[][] matriz_original)
+    {
+        System.out.println("");
+        System.out.println("Resultados:");
+        int n = matriz_original.length;
+        
+        for (int i = 0; i < n; i++) 
+        {
+            System.out.println("X" + i + "=" + this.redondear(x[i]));
+        }
+            System.out.println("");
+            System.out.println("Comprobandolo:");
+
+            this.reportarmatriz(matriz_original);
+            
+            for (int i = 0; i < n; i++) 
+            {
+                double resultado = 0;
+                for (int j = 0; j < n; j++) 
+                {
+                    resultado += matriz_original[i][j] * x[j];
+                    System.out.print(this.redondear(matriz_original[i][j]) + "(" + this.redondear(x[j]) + ")");
+                    if ((n - 1) == j) 
+                    {
+                    } 
+                    else 
+                    {
+                        System.out.print("+");
+                    }
+                }
+                
+                System.out.println("=" + this.redondear(resultado));
+            }
+	}
 }

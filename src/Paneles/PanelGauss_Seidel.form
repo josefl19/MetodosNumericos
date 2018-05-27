@@ -38,10 +38,7 @@
                   <Component id="lblGauss" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnCalcular" max="32767" attributes="0"/>
-                  <Component id="cbPivote" max="32767" attributes="0"/>
-              </Group>
+              <Component id="btnCalcular" min="-2" pref="105" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -71,11 +68,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="btnCalcular" min="-2" pref="35" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="cbPivote" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="btnCalcular" min="-2" pref="35" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="lblGauss" min="-2" pref="25" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -179,14 +172,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalcularActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="cbPivote">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#xbf;Pivoteo Parcial?"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbPivoteActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JRadioButton" name="opt4">
       <Properties>
         <Property name="text" type="java.lang.String" value="4 x 4"/>
@@ -201,7 +186,7 @@
           <Font name="Tahoma" size="14" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="SOLUCI&#xd3;N POR JACOBI"/>
+        <Property name="text" type="java.lang.String" value="SOLUCI&#xd3;N POR GAUSS-SEIDEL"/>
       </Properties>
     </Component>
   </SubComponents>
