@@ -77,7 +77,7 @@ public class Metodos extends javax.swing.JFrame
         jMenuInterpolacion = new javax.swing.JMenuItem();
         jMenuRMultiple = new javax.swing.JMenuItem();
         jMenuRegresionPolinomial = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuInterpolacionNewton = new javax.swing.JMenuItem();
         jMenuLagrange = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -266,13 +266,13 @@ public class Metodos extends javax.swing.JFrame
         });
         jMenu5.add(jMenuRegresionPolinomial);
 
-        jMenuItem2.setText("Interpolacion Newton");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuInterpolacionNewton.setText("Interpolacion Newton");
+        jMenuInterpolacionNewton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMenuInterpolacionNewtonActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem2);
+        jMenu5.add(jMenuInterpolacionNewton);
 
         jMenuLagrange.setText("Interpolacion de Lagrange");
         jMenuLagrange.addActionListener(new java.awt.event.ActionListener() {
@@ -469,9 +469,15 @@ public class Metodos extends javax.swing.JFrame
         panelPrincipal.repaint();
     }//GEN-LAST:event_jMenuLagrangeActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenuInterpolacionNewtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuInterpolacionNewtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+        PanelInterpolacionNewton pin = new PanelInterpolacionNewton();
+        pin.setSize(685,368);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(pin);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+    }//GEN-LAST:event_jMenuInterpolacionNewtonActionPerformed
 
     private void jMenuNewtonRaphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuNewtonRaphActionPerformed
         PanelNewtonRaphson pnr = new PanelNewtonRaphson();
@@ -534,7 +540,7 @@ public class Metodos extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuGaussSeidel;
     private javax.swing.JMenuItem jMenuInterpolacion;
     private javax.swing.JMenuItem jMenuInterpolacionCuad;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuInterpolacionNewton;
     private javax.swing.JMenuItem jMenuJacobi;
     private javax.swing.JMenuItem jMenuLagrange;
     private javax.swing.JMenuItem jMenuNewton;

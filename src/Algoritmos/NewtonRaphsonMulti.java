@@ -24,6 +24,7 @@ public class NewtonRaphsonMulti
         return f1;
     }
     String xact, xant;
+    
     public String error(double xactual, double xanterior)
     {
         xact=String.format("%.6f", xactual);

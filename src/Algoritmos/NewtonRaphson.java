@@ -27,6 +27,7 @@ public class NewtonRaphson {
       ximas=String.format("%.6f", xi1);
       return ximas;
     }
+   
     public String error(double xactual, double xanterior)
     {
         xact1=String.format("%.6f", xactual);

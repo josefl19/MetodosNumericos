@@ -6,7 +6,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class PanelNewtonRaphson extends javax.swing.JPanel 
 {
-    String funcion1, funcion2, derivadaf1x, derivadaf1y, derivadaf2x, derivadaf2y;
+    String funcion1, funcion2, derivadaf1x, derivadaf1y, derivadaf2x, derivadaf2y, xin, yin;
     double x, y, xi, yi, Xant, Yant;
     double errorPermitido = 0.001;
     double f1, f2, df1x, df1y, df2x, df2y;
@@ -216,6 +216,12 @@ public class PanelNewtonRaphson extends javax.swing.JPanel
         NewtonRaphsonMulti nrm = new NewtonRaphsonMulti();
         DefaultTableModel tabla = (DefaultTableModel) tblResultados.getModel();
         
+        for (int i = 0; i < tblResultados.getRowCount(); i++) 
+        {
+            tabla.removeRow(i);
+            i-=1;
+        }
+        
         iteracion = 1;
         errorX = 1;
         errorY = 1;
@@ -316,14 +322,14 @@ public class PanelNewtonRaphson extends javax.swing.JPanel
             
             xi = deltaX+x;
             yi = deltaY+y;
-            Xant = x;
-            x = xi;
-            y = yi;
             
+            xin = String.format("%.6f", xi);
+            yin = String.format("%.6f", yi);
+
             if(iteracion != 1)
             {
-                errorX = Double.parseDouble(nrm.error(Xant, xi));
-                errorY = Double.parseDouble(nrm.error(Yant, yi));
+                errorX = Double.parseDouble(nrm.error(x, Xant));
+                errorY = Double.parseDouble(nrm.error(y, Yant));
                 fila[11] = errorX; // Error
                 fila[12] = errorY; // Error
             }
@@ -332,6 +338,12 @@ public class PanelNewtonRaphson extends javax.swing.JPanel
                 fila[11] = ""; // Error
                 fila[12] = "";
             }
+            
+            x = Double.parseDouble(xin);
+            y = Double.parseDouble(yin);
+            
+            iteracion++;
+            Xant = x;
             
             tabla.addRow(fila);
             
