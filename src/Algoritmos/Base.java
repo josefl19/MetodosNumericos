@@ -239,6 +239,59 @@ public class Base
     public double[] inicializar(double[] n) {
         return this.inicializar(n, 0);
     }
+    
+    public void reportarcoordenadas(double[] x, double[] y) {
+
+        int n = x.length;
+        double[][] coordenadas = new double[2][n];
+
+        for (int j = 0; j < n; j++) 
+        {
+            coordenadas[0][j] = x[j];
+            coordenadas[1][j] = y[j];
+        }
+
+        int ancho = this.getEspaciado(coordenadas);
+        System.out.println("");
+
+        System.out.print("\n");
+
+        for (int i = 0; i < coordenadas.length; i++) 
+        {
+            if (i == 0) {
+                System.out.print(this.redondear("X", 5, true));
+            } else {
+                System.out.print(this.redondear("f(x)", 5, true));
+            }
+
+            this.reportarFilacoordenadas(coordenadas[i], ancho);
+        }
+
+        System.out.println("");
+    }
+    
+    public void reportarFilacoordenadas(double[] fila, int ancho) {
+
+        System.out.print("[");
+        int n = fila.length;
+        for (int i = 0; i < n; i++) {
+            double numero = fila[i];
+
+            if (i != 0) {
+
+                System.out.print("|" + this.redondear(numero, ancho, true));
+
+            } else {
+                System.out.print(this.redondear(numero, ancho, true));
+
+            }
+
+        }
+
+        System.out.print("]");
+        System.out.print("\n");
+
+    }
 
     /**
      * inicializa un vector con un numero definido

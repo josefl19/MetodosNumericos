@@ -1,7 +1,4 @@
-
 package Algoritmos;
-
-
 
 public class NewtonRaphson {
     double xi1,fxi,dfxi,xi,error;
@@ -11,7 +8,7 @@ public class NewtonRaphson {
     
     public String fxiNR(String funcion,double xi) throws Exception
     {
-        ex= new Expresion(funcion);
+        ex = new Expresion(funcion);
         fxi=ex.evaluar(xi);
         fxi1=String.format("%.6f", fxi);
         return fxi1;

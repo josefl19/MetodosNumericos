@@ -64,16 +64,21 @@ public class Metodos extends javax.swing.JFrame
         jMenuSecante = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
         jMenuGauss = new javax.swing.JMenuItem();
         jMenuGaussJordan = new javax.swing.JMenuItem();
         jMenuJacobi = new javax.swing.JMenuItem();
         jMenuGaussSeidel = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        jMenuNewtonRaph = new javax.swing.JMenuItem();
         jMenuRegresion = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuInterpolacionCuad = new javax.swing.JMenuItem();
         jMenuInterpolacion = new javax.swing.JMenuItem();
         jMenuRMultiple = new javax.swing.JMenuItem();
         jMenuRegresionPolinomial = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuLagrange = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Proyecto Métodos Numericos");
@@ -167,13 +172,15 @@ public class Metodos extends javax.swing.JFrame
 
         jMenu6.setText("Solución de Ecuaciones");
 
+        jMenu7.setText("Lineales");
+
         jMenuGauss.setText("Gauss");
         jMenuGauss.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuGaussActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuGauss);
+        jMenu7.add(jMenuGauss);
 
         jMenuGaussJordan.setText("Gauss-Jordan");
         jMenuGaussJordan.addActionListener(new java.awt.event.ActionListener() {
@@ -181,7 +188,7 @@ public class Metodos extends javax.swing.JFrame
                 jMenuGaussJordanActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuGaussJordan);
+        jMenu7.add(jMenuGaussJordan);
 
         jMenuJacobi.setText("Jacobi");
         jMenuJacobi.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +196,7 @@ public class Metodos extends javax.swing.JFrame
                 jMenuJacobiActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuJacobi);
+        jMenu7.add(jMenuJacobi);
 
         jMenuGaussSeidel.setText("Gauss-Seidel");
         jMenuGaussSeidel.addActionListener(new java.awt.event.ActionListener() {
@@ -197,7 +204,21 @@ public class Metodos extends javax.swing.JFrame
                 jMenuGaussSeidelActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuGaussSeidel);
+        jMenu7.add(jMenuGaussSeidel);
+
+        jMenu6.add(jMenu7);
+
+        jMenu8.setText("No Lineales");
+
+        jMenuNewtonRaph.setText("Newton-Raphson");
+        jMenuNewtonRaph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuNewtonRaphActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuNewtonRaph);
+
+        jMenu6.add(jMenu8);
 
         jMenu4.add(jMenu6);
 
@@ -221,7 +242,7 @@ public class Metodos extends javax.swing.JFrame
         });
         jMenu5.add(jMenuInterpolacionCuad);
 
-        jMenuInterpolacion.setText("Interpolación");
+        jMenuInterpolacion.setText("Interpolación Lineal");
         jMenuInterpolacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuInterpolacionActionPerformed(evt);
@@ -244,6 +265,22 @@ public class Metodos extends javax.swing.JFrame
             }
         });
         jMenu5.add(jMenuRegresionPolinomial);
+
+        jMenuItem2.setText("Interpolacion Newton");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem2);
+
+        jMenuLagrange.setText("Interpolacion de Lagrange");
+        jMenuLagrange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuLagrangeActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuLagrange);
 
         jMenuPrincipal.add(jMenu5);
 
@@ -422,6 +459,29 @@ public class Metodos extends javax.swing.JFrame
         panelPrincipal.repaint();
     }//GEN-LAST:event_jMenuInterpolacionCuadActionPerformed
 
+    private void jMenuLagrangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuLagrangeActionPerformed
+        // TODO add your handling code here:
+        PanelLagrange pla = new PanelLagrange();
+        pla.setSize(691,355);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(pla);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+    }//GEN-LAST:event_jMenuLagrangeActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuNewtonRaphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuNewtonRaphActionPerformed
+        PanelNewtonRaphson pnr = new PanelNewtonRaphson();
+        pnr.setSize(685,368);
+        panelPrincipal.removeAll();
+        panelPrincipal.add(pnr);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+    }//GEN-LAST:event_jMenuNewtonRaphActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -466,14 +526,19 @@ public class Metodos extends javax.swing.JFrame
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuItem jMenuBiseccion;
     private javax.swing.JMenuItem jMenuGauss;
     private javax.swing.JMenuItem jMenuGaussJordan;
     private javax.swing.JMenuItem jMenuGaussSeidel;
     private javax.swing.JMenuItem jMenuInterpolacion;
     private javax.swing.JMenuItem jMenuInterpolacionCuad;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuJacobi;
+    private javax.swing.JMenuItem jMenuLagrange;
     private javax.swing.JMenuItem jMenuNewton;
+    private javax.swing.JMenuItem jMenuNewtonRaph;
     private javax.swing.JMenuBar jMenuPrincipal;
     private javax.swing.JMenuItem jMenuPuntoFijo;
     private javax.swing.JMenuItem jMenuRMultiple;

@@ -83,38 +83,60 @@
                 <Property name="text" type="java.lang.String" value="Soluci&#xf3;n de Ecuaciones"/>
               </Properties>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuGauss">
+                <Menu class="javax.swing.JMenu" name="jMenu7">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Gauss"/>
+                    <Property name="text" type="java.lang.String" value="Lineales"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuGaussActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuGaussJordan">
+                  <SubComponents>
+                    <MenuItem class="javax.swing.JMenuItem" name="jMenuGauss">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Gauss"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuGaussActionPerformed"/>
+                      </Events>
+                    </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="jMenuGaussJordan">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Gauss-Jordan"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuGaussJordanActionPerformed"/>
+                      </Events>
+                    </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="jMenuJacobi">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Jacobi"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuJacobiActionPerformed"/>
+                      </Events>
+                    </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="jMenuGaussSeidel">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Gauss-Seidel"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuGaussSeidelActionPerformed"/>
+                      </Events>
+                    </MenuItem>
+                  </SubComponents>
+                </Menu>
+                <Menu class="javax.swing.JMenu" name="jMenu8">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Gauss-Jordan"/>
+                    <Property name="text" type="java.lang.String" value="No Lineales"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuGaussJordanActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuJacobi">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Jacobi"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuJacobiActionPerformed"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuGaussSeidel">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Gauss-Seidel"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuGaussSeidelActionPerformed"/>
-                  </Events>
-                </MenuItem>
+                  <SubComponents>
+                    <MenuItem class="javax.swing.JMenuItem" name="jMenuNewtonRaph">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Newton-Raphson"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuNewtonRaphActionPerformed"/>
+                      </Events>
+                    </MenuItem>
+                  </SubComponents>
+                </Menu>
               </SubComponents>
             </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuRegresion">
@@ -142,7 +164,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuInterpolacion">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Interpolaci&#xf3;n"/>
+                <Property name="text" type="java.lang.String" value="Interpolaci&#xf3;n Lineal"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuInterpolacionActionPerformed"/>
@@ -162,6 +184,22 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuRegresionPolinomialActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Interpolacion Newton"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuLagrange">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Interpolacion de Lagrange"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuLagrangeActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

@@ -5,7 +5,6 @@ import java.text.DecimalFormat;
 
 public class Biseccion
 {
-    
     Expresion exp;
     String funcion,fa1,fb1,fxr1,error1,xant1,xact1;
     double a, b, xr;
@@ -34,7 +33,8 @@ public class Biseccion
         fxr1=String.format("%.6f", fxr);
         return fxr1;
     }
-     public String error(double xactual, double xanterior)
+    
+    public String error(double xactual, double xanterior)
     {
         xact1=String.format("%.6f", xactual);
         xactual=Double.parseDouble(xact1);

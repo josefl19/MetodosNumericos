@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/MetodosNumericos/src/Paneles/GaussSeidel.java</file>
-            <file>file:/D:/MetodosNumericos/src/Paneles/PanelJacobi.java</file>
+            <file>file:/D:/MetodosNumericos/src/Paneles/PanelBiseccion.java</file>
+            <file>file:/D:/MetodosNumericos/src/Algoritmos/NewtonRaphsonMulti.java</file>
+            <file>file:/D:/MetodosNumericos/src/Paneles/PanelNewton.java</file>
+            <file>file:/D:/MetodosNumericos/src/Paneles/Metodos.java</file>
+            <file>file:/D:/MetodosNumericos/src/Paneles/PanelNewtonRaphson.java</file>
+            <file>file:/D:/MetodosNumericos/src/Algoritmos/NewtonRaphson.java</file>
         </group>
     </open-files>
 </project-private>
