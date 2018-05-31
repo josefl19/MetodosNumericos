@@ -325,7 +325,7 @@ public class PanelNewtonRaphson extends javax.swing.JPanel
             
             xin = String.format("%.6f", xi);
             yin = String.format("%.6f", yi);
-
+            
             if(iteracion != 1)
             {
                 errorX = Double.parseDouble(nrm.error(x, Xant));
@@ -338,12 +338,14 @@ public class PanelNewtonRaphson extends javax.swing.JPanel
                 fila[11] = ""; // Error
                 fila[12] = "";
             }
-            
+            Xant = x;
+            Yant=y;
             x = Double.parseDouble(xin);
             y = Double.parseDouble(yin);
             
             iteracion++;
-            Xant = x;
+            
+            
             
             tabla.addRow(fila);
             
