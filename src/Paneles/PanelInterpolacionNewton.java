@@ -2,10 +2,6 @@ package Paneles;
 
 import Algoritmos.Newton;
 import Algoritmos.txtResultados;
-import Algoritmos.RegresionMinimosCuadrados;
-import Algoritmos.RegresionPolinomial;
-import com.sun.istack.internal.logging.Logger;
-import java.text.DecimalFormat;
 import javax.swing.table.DefaultTableModel;
 
 public class PanelInterpolacionNewton extends javax.swing.JPanel 

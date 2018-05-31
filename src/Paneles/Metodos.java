@@ -22,8 +22,12 @@ public class Metodos extends javax.swing.JFrame
     {
         initComponents();
         
-        ImageIcon portada = new ImageIcon("src/imagenes/inicio1.jpeg");
-        ImageIcon logo = new ImageIcon("src/imagenes/logo.jpeg");
+       // ImageIcon portada = new ImageIcon("src/imagenes/inicio1.jpeg");
+        ImageIcon portada = new ImageIcon(getClass().getResource("/imagenes/inicio1.jpeg")); 
+
+       // ImageIcon logo = new ImageIcon("src/imagenes/logo.jpeg");
+                ImageIcon logo = new ImageIcon(getClass().getResource("/imagenes/logo.jpeg")); 
+
         JLabel port = new JLabel(portada);
         JLabel icon = new JLabel(logo);
         

@@ -5,9 +5,7 @@
  */
 package Paneles;
 
-import Algoritmos.RegresionMinimosCuadrados;
 import Algoritmos.RegresionMultiple;
-import com.sun.istack.internal.logging.Logger;
 import java.text.DecimalFormat;
 import javax.swing.table.DefaultTableModel;
 
